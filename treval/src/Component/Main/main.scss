@@ -16,7 +16,7 @@
 
     .main{
         width: 100%;
-        border: 1px solid red;
+        
         .secTitle{
 
             .title{
@@ -151,3 +151,32 @@
         }
     }
     
+    //  MEDIA QUERIES ==================>
+
+    @media screen and (min-width: 500px) {
+        .title{
+            font-size: 1.5rem;
+            &::after{
+                width: 140px 
+                !important;
+            }
+        }
+        .secContent{
+            grid-template-columns: repeat(2, 1fr);
+
+            .singleDestination{
+                height: auto;
+            }
+        }
+    }
+
+    @media screen and (min-width: 840px){
+        .secContent{
+            grid-template-columns: repeat(3, 1fr);
+
+            .singleDestination{
+                height: auto;
+            }
+        }
+
+    }
