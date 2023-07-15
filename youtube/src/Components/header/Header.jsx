@@ -5,10 +5,10 @@ import { FaBars } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 import {IoMdNotifications} from "react-icons/io";
 import {MdApps} from "react-icons/md";
-const Header = () => {
+const Header = ({handl}) => {
   return (
     <div className="border border-dark header">
-      <FaBars className="header__menu" size={26} />
+      <FaBars className="header__menu" size={26} onClick={()=>{handl()}} />
 
       <img
         src="https://pngimg.com/uploads/youtube/youtube_PNG2.png"
