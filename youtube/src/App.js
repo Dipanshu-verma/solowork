@@ -5,6 +5,7 @@ import Sidebar from './Components/sidebar/Sidebar'
 import HomeScreen from './Components/Screens/homescreen/HomeScreen'
 import './_app.scss'
 import { useState } from 'react';
+import LoginScreen from './Components/LoginScreen/LoginScreen';
 const App = () => {
   const[sidebar,toggleSidebar] = useState(false);
 
@@ -13,14 +14,14 @@ const App = () => {
   }
   return (
     <>
-       <Header handl={handl}/>
+       {/* <Header handl={handl}/>
        <div className="app__container border border-info">
        <Sidebar sidebar={sidebar}  handl={handl}/>
            <Container fluid className="app__main border border-warning">
             <HomeScreen/>
            </Container>
-       </div>
-
+       </div> */}
+<LoginScreen/>
     </>
   )
 }
