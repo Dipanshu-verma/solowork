@@ -1,40 +1,7 @@
-## React-Online-Mock-Exam
 
-### Submission Instructions [Please note]
 
-#### Maximum Marks - 16
-
-- The Submission should not contain spaces, for example /rct-101 folder/eval will not work.
-- Do not push node_modules and package-lock.json to github.
-
-```
-✅ Able to submit the app - 1 mark ( minimum score )
-✅ Heading and button to start the exam should be visible when the component loads - 1 mark
-✅ Should make a get request to the endpoint when clicked on Start Exam button and disappear on UI once clicked on it and End Exam button, Score(Score: 0) is visible - 2 marks
-✅ Check all questions are visible along with 4 options - 2 marks
-✅ Check whether able select the answer for any question and the score is getting updated only after selecting the correct ans -3 marks
-✅ Check whether the user able to select only one answer, and all option buttons of that question are getting disabled after selecting it - 1 mark
-✅ Check End Exam button is working as per the problem statement or not - 2 marks
-✅ check after selecting option for any question, the correct option is having className as "bgGreen" and the wrong options are having className as "bgRed" - 3 marks
-✅ There should be a show ans button on clicking it the ans should be visible for that question - 1 mark
-```
-
-### Installation
-
-- Use node version(LTS) should be `v16.16.0`
-- Don't change/override package.json
-
-```
-npm install --engine-strict
-
-// run locally
-npm run start
-```
-
-- the system on cp.masaischool.com may take between 1-20 minutes for responding,
-- so we request you to read the problem carefully and debug it before itself
-- we also request you not just submit it last minute
-  try to keep one submission at a time
+ 
+ 
 
 ## Problem Description
 
@@ -44,15 +11,7 @@ When the user clicks on any option, the marks should be updated on real-time. An
 
 ## Folder Structure
 
-```
-├── src
-|  ├── App.css
-|  ├── App.jsx
-|  ├── Components
-|  |  ├── Booklet.jsx
-|  |  ├── Option.jsx
-|  |  └── QuestionCard.jsx
-```
+ 
 
 
 
@@ -138,19 +97,5 @@ This component will be responsible for displaying the option. And there is a `di
 <div>
 <img src="https://i.imgur.com/O7dT2DU.png" width="100%">
 </div>
-
-#### The problem is tested on CP
-![https://i.imgur.com/rRIW5FN.png](https://i.imgur.com/1SufEDP.png)
-
-#### **Note**
-
-- Make sure you use only the given components and don't create new Components, files, or folders of your own. Changing the component name, and file/folder structures might result in giving you zero marks
-- Do Not Remove `data-cy="xxxx"` from anywhere, these are used by testing tools to test your code, and removal of this will lead to low scores.
-- Also make sure to cross-check all the spellings and Cases of Texts.
-
-### General Guidelines
-
-- The system on cp.masaischool.com may take between 1-20 minutes for responding,
-- so we request you to read the problem carefully and debug it before itself
-- we also request you not to just submit it last minute
-- try to keep one submission at a time
+ 
+ 
