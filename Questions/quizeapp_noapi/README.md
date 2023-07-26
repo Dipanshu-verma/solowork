@@ -11,11 +11,6 @@ When the user clicks on any option, the marks should be updated on real-time. An
 
 ## Folder Structure
 
- 
-
-
-
-[Demo App Link](https://i.imgur.com/plz2L4f.gif)
 
 ### App.jsx
 

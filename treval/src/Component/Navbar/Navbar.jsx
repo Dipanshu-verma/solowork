@@ -4,7 +4,7 @@ import './navbar.css'
 import { MdOutlineTravelExplore } from 'react-icons/md'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { PiDotsNineBold } from 'react-icons/pi'
-
+  
 
 
 const Navbar = () => {
@@ -30,7 +30,7 @@ const Navbar = () => {
     </li>
 
     <li className='navItem'>
-    <a href='#' className='navLink'>Packages</a>
+    <a href="../Packages/Package" target='blank' className='navLink'>Packages</a>
     </li>
 
     <li className='navItem'>

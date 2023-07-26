@@ -1,0 +1,39 @@
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.App{
+  
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ 
+text-align: center;
+
+width: 30%;
+margin: auto;
+margin-top: 20px; 
+border: 2px solid black;
+padding: 10px;
+}
+
+input{
+  padding:10px;
+  margin-left: -16px;
+  width: 100%;
+ font-size: 20px;
+}
+h1{
+  font-size: 60px;
+  margin: 0px 0px;
+  margin-bottom: 10px;
+}
+button{
+  padding: 12px 10px;
+  background-color: black;
+  color: #fff;
+  border: 1px solid #fff;
+ margin-right:10px ;
+}
+

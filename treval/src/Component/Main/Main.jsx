@@ -1,8 +1,7 @@
 import React from 'react'
 import './main.css'
 import "./main.scss"
-import {HiOutlineLocationMarker} from "react-icons/hi"
-import {HiOutlineClipboardCheck} from "react-icons/hi"
+
 import img1 from "../../Assest/img1.jpg"
 import img2 from "../../Assest/img2.jpg"
 import img3 from "../../Assest/img3.jpg"
@@ -13,6 +12,7 @@ import img6 from "../../Assest/img6.jpg"
 import { useEffect } from "react";
 import Aos from 'aos'
 import 'aos/dist/aos.css'
+import Card from '../Common/Card'
 const data = [
   {
     id: 1,
@@ -90,34 +90,7 @@ export default function Main() {
             {
               data.map((elm)=>{
                 return(
-                  <div key={elm.id}  data-aos="fade-up" className='singleDestination'>
-                          <div className='imageDiv'>
-                            <img src={elm.imgsrc} alt={elm.destTitle}/>
-                          </div>
-                          <div className='cardInfo'>
-                               <h4 className='destTitle'>{elm.destTitle}</h4>
-                               <span className='continent flex'>
-                                <HiOutlineLocationMarker className='icon'/>
-                                <span className='name'>{elm.location}</span>
-                               </span>
-                               
-                               <div className='fees flex'>
-                                 <div className='grade' >
-                                      <span> {elm.grade} <small>+1</small></span>
-                                 </div>
-                                 <div className='price'>
-                                   <h5>{elm.fees}</h5>
-                                 </div>
-                               </div>
-                               <div className='desc'>
-                                 <p>{elm.description}</p>
-                                 </div>
-                                <button className='btn flex'>
-                                  DETAILS  <HiOutlineClipboardCheck className='icon'/>
-                                </button>
-
-                          </div>
-                  </div>
+                <Card key={elm.id} image={elm.imgsrc} destTitle={elm.destTitle} location={elm.location} grade={elm.grade} fees={elm.fees} description={elm.description} />
                 )
               })
             }
