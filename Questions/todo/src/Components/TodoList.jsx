@@ -72,16 +72,10 @@ function TodoList() {
         body: JSON.stringify(updatedTodo),
       });
 
-      // res = await res.json();
-      // let newArr = [...todos];
+      
 
       // let index = todos.findIndex((todo) => todo.id == id);
-
-      // console.log(index);
-      // console.log(id - 1);
-
-      // newArr[index] = updatedTodo;
-      // setTodos(newArr);
+ 
       getData();
     } catch (error) {
       setErr(true);
@@ -97,13 +91,7 @@ function TodoList() {
         method: "DELETE",
       });
 
-      // setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
-
-      // let index = todos.findIndex((todo) => todo.id == id);
-      // let newArr = [...todos];
-      // newArr.splice(index, 1);
-      // console.log(newArr);
-      // setTodos(newArr);
+     
       getData();
     } catch (error) {
       setErr(true);

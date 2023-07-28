@@ -6,8 +6,8 @@
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-
-  &__top {
+width: 100%;
+  .video__top{
     margin-bottom: 0.7rem;
     position: relative;
     img {
@@ -25,18 +25,19 @@
     }
   }
 
-  &__bottom {
+  .video__bottom{
     
     display: flex;
      
     column-gap: 0.7rem;
     padding-right: 1rem;
     img {
+
       width: 36px;
       height: 36px;
       border-radius: 50%;
     }
-    .right { 
+    .right{ 
 
       display: flex;
       flex-direction: column;

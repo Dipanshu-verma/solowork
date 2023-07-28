@@ -2,7 +2,7 @@ import React from 'react'
 import { Container,Row,Col} from 'react-bootstrap'
 import Categories from '../../categorybar/Categories'
 import Video from '../../video/Video'
-
+ 
 const HomeScreen = () => {
   return (
     <Container>

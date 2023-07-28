@@ -17,7 +17,7 @@ const Video = () => {
           alt=""/>
 
         <div className="right">
-            <span className="video__title">create a app in 5 min by create a app in 5 min by d devil</span>
+            <span className="video__title">create a app in 5 by create a ap a app in 5 min by d devil</span>
             <span>marval studio</span>
           <div className="video__details">
             <span>5m views • </span>

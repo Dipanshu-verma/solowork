@@ -14,14 +14,14 @@ const App = () => {
   }
   return (
     <>
-       <Header handl={handl}/>
-       <div className="app__container border border-info">
+       {/* <Header handl={handl}/>
+       <div className="app__container border">
        <Sidebar sidebar={sidebar}  handl={handl}/>
-           <Container fluid className="app__main border border-warning">
+           <Container >
             <HomeScreen/>
            </Container>
-       </div>
-{/* <LoginScreen/> */}
+       </div> */}
+<LoginScreen/>
     </>
   )
 }
