@@ -1,7 +1,18 @@
 import React from 'react'
 import './_sidebar.scss'
 import {MdSubscriptions,MdExitToApp,MdThumbUp,MdHistory,MdLibraryBooks,MdHome,MdSentimentDissatisfied} from 'react-icons/md'
+import { logout } from '../../Redux/actions/authaction'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 const Sidebar = ({sidebar,handl}) => {
+ const naviget  =  useNavigate()
+  const  dispatch = useDispatch()
+  function logouthanddler(){
+    
+    dispatch(logout())
+    naviget("/auth")
+
+  }
   // let classes = sidebar? ' sidebar sidebarshow':'sidebar'
   return (
     <nav className= {sidebar? ' sidebar show':'sidebar'} onClick={()=>handl()}>
@@ -30,7 +41,7 @@ const Sidebar = ({sidebar,handl}) => {
         <span>i don't know</span>
        </li>
        <hr />
-       <li>
+       <li onClick={logouthanddler}>
         <MdExitToApp size={23}/>
         <span>Log out</span>
        </li>

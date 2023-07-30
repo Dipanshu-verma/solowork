@@ -1,6 +1,5 @@
-import firebase from 'firebase/app'
-
-
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 const firebaseConfig = {
     apiKey: "AIzaSyA5WrI7yNykv-duQpziqvfv2J6bityka0Y",
     authDomain: "tube-you-pro.firebaseapp.com",
@@ -11,3 +10,4 @@ const firebaseConfig = {
   };
 
   firebase.initializeApp(firebaseConfig)
+  export default firebase.auth();

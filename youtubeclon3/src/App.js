@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Header from "./Components/header/Header";
 import Sidebar from "./Components/sidebar/Sidebar";
@@ -6,7 +6,8 @@ import HomeScreen from "./Components/Screens/homescreen/HomeScreen";
 import "./_app.scss";
 import { useState } from "react";
 import LoginScreen from "./Components/LoginScreen/LoginScreen";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Leyout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false);
@@ -27,6 +28,24 @@ const Leyout = ({ children }) => {
 
  
 const App = () => {
+
+
+
+   const {accessToken,loading} = useSelector((state) => state.auth);
+    const naviget  =  useNavigate();
+
+     useEffect(()=>{
+  
+  if(!loading&& !(accessToken==null)){
+
+     naviget('/')
+  } 
+ 
+},[accessToken,loading])
+
+
+
+
   return (
     <Routes>
       <Route path="/"  element={ <Leyout><HomeScreen/></Leyout> } />
