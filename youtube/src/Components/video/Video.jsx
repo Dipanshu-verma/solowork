@@ -1,27 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./_video.scss";
+import request from "../../api";
+import moment from 'moment'
+import numeral from 'numeral'
+const Video = ({ video }) => {
+  const {
+    id,
+    snippet: {
+      channelId,
+      channelTitle,
+      title,
+      publishedAt,
+      thumbnails: { medium },
+    },
+  } = video;
 
-const Video = () => {
+  const[views, setViews] =  useState(null);
+  const[duration, setDuration] = useState(null)
+  const[channelicon, setchannelicon] = useState(null)
+
+const seconds =  moment.duration(duration).asSeconds()
+const _duration = moment.utc(seconds*1000).format("mm:ss")
+  useEffect(() => {
+    const get_video_details = async () => {
+      const {
+        data: { items },
+      } = await request("/videos", {
+        params: {
+          part: "contentDetails,statistics",
+          id: id,
+        },
+      });
+      setDuration(items[0].contentDetails.duration);
+      setViews(items[0].statistics.viewCount);
+    };
+    get_video_details();
+  }, [id]);
+
+
+  useEffect(() => {
+    const get_channel_icon = async () => {
+      const {
+        data: { items },
+      } = await request("/channels", {
+        params: {
+          part: "snippet",
+          id: channelId,
+        },
+      });
+      setchannelicon(items[0].snippet.thumbnails.default)
+      console.log(items);
+    };
+    get_channel_icon();
+  }, [channelId]);
+
   return (
     <div className="video">
       <div className="video__top">
-        <img
-          src="https://i.ytimg.com/vi/b1tLzl4jgF0/hq720.jpg?sqp=-…AFwAcABBg==&rs=AOn4CLCtM073s3HrZM6SBmC-_FOE8VOsdw"
-          alt=""
-        />
-        <span>05.00</span>
+        <img src={medium.url} alt="" />
+        <span>{_duration}</span>
       </div>
       <div className="video__bottom">
         <img
-          src="https://yt3.ggpht.com/JbaWkiwA-8qWQ5svc6dQCes0LqXH-_GAuJ11zjEA5HgqMkR20VL_tVFsmnQ4FA-0Z8TzK9I4=s68-c-k-c0x00ffffff-no-rj"
-          alt=""/>
+          src={channelicon?.url}
+          alt=""
+        />
 
         <div className="right">
-            <span className="video__title">create a app in 5 by create a ap a app in 5 min by d devil</span>
-            <span>marval studio</span>
+          <span className="video__title">
+           {title}
+          </span>
+          <span>{channelTitle}</span>
           <div className="video__details">
-            <span>5m views • </span>
-            <span>5 days ago</span>
+            <span> {numeral(views).format("0.a")} views • </span>
+            <span>{moment(publishedAt).fromNow()}</span>
           </div>
         </div>
       </div>

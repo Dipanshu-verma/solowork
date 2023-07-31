@@ -10,7 +10,7 @@ const Sidebar = ({sidebar,handl}) => {
   function logouthanddler(){
     
     dispatch(logout())
-    naviget("/auth")
+   
 
   }
   // let classes = sidebar? ' sidebar sidebarshow':'sidebar'

@@ -31,15 +31,17 @@ const App = () => {
 
 
 
-   const {accessToken,loading} = useSelector((state) => state.auth);
+   const accessToken = useSelector((state) => state.auth.accessToken);
+   const loading = useSelector((state) => state.auth.loading);
     const naviget  =  useNavigate();
 
      useEffect(()=>{
-  
-  if(!loading&& !(accessToken==null)){
-
-     naviget('/')
-  } 
+    
+  if(!loading&&(accessToken===null)){
+    naviget('/auth')
+    
+  }
+ 
  
 },[accessToken,loading])
 

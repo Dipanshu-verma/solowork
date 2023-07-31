@@ -15,7 +15,7 @@ const intial = {
     : null,
   loading: false,
 };
-console.log(intial);
+ 
 
 export const authreducer = (prevState = { intial }, action) => {
   const { type, payload } = action;
