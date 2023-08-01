@@ -1,6 +1,6 @@
 import React from "react";
-
-const StepFour = ({setPage,data, setdata }) => {
+import "../styles.css"
+const StepFour = ({setPage,data, setdata,setState }) => {
 
 
   function getdata(event) {
@@ -31,9 +31,11 @@ const StepFour = ({setPage,data, setdata }) => {
    
   
      <div>
-   <button onClick={()=>setPage(2) }  >previous</button>
+     <div className="btnDiv">
+   <button onClick={()=>setPage(2) } >previous</button>
     
   <input type="submit" />
+  </div>
     </div>
 
   </div>;

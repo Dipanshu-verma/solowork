@@ -27,9 +27,12 @@ const StepTwo = ({setPage,data, setdata }) => {
     <input type="date"  name="birthdata"  data-cy="birthDate"  onChange={(event) => getdata(event)} />
    </labe>
    <div>
-   <button  onClick={()=>setPage(1) }>previous</button>
-     <button  onClick={()=>setPage(3) }>next</button>
+   <div className="btnDiv">
 
+  
+   <button  onClick={()=>setPage(1) }>previous</button>
+    <button  onClick={()=>setPage(3) }>next</button>
+    </div>
    </div>
   
   </div>;

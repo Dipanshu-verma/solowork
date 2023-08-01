@@ -22,7 +22,7 @@ const StepThree = ({setPage,data,setdata }) => {
     <input type="tel"   placeholder="phone number" name="phonenumber"  data-cy="phone" onChange={(event) => getdata(event)} />
    </label>
   
-     <div>
+     <div className="btnDiv">
    <button onClick={()=>setPage(2) }  >previous</button>
      <button onClick={()=>setPage(4) }  >Next</button>
 

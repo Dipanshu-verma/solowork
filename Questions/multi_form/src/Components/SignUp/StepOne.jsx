@@ -1,5 +1,5 @@
 import React from "react";
-
+ import "../styles.css"
 const StepOne = ({ setPage, data, setdata }) => {
   function getdata(event) {
     setdata({ ...data, [event.target.name]: event.target.value });
@@ -20,24 +20,25 @@ const StepOne = ({ setPage, data, setdata }) => {
       <label>
         <p>Password</p>
         <input
-          type="text"
+          type="password"
           name="Password"
           placeholder="Password"
           data-cy="password"
+          
           onChange={getdata}
         />
       </label>
       <label>
         <p>Confirm Password</p>
         <input
-          type="text"
+          type="password"
           name="ConfirmPassword"
           placeholder="Confirm Password"
           data-cy="confirmedPassword"
           onChange={getdata}
         />
       </label>
-      <button onClick={() => setPage(2)}>Next</button>
+      <button className="nextbutton" onClick={() => setPage(2)}>Next</button>
     </div>
   );
 };

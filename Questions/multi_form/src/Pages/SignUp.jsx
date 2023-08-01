@@ -3,34 +3,21 @@ import StepFour from "../Components/SignUp/StepFour";
 import StepOne from "../Components/SignUp/StepOne";
 import StepTwo from "../Components/SignUp/StepTwo";
 import StepThree from "../Components/SignUp/StepThree";
-import UserInfo from "../Components/SignUp/UserInfo";
+ 
+import './SignUp.css'
 
-
-const SignUp = () => {
+const SignUp = ({data,setdata,setState}) => {
 const[Page,setPage]  = useState(1);
-const[data, setdata] = useState({
-  email:"",
-  Password:"",
-  ConfirmPassword:"",
-  education:"",
-  passingyear:"",
-  birthdata:"",
-  FirstName:"",
-  lastName:"",
-  phonenumber:"",
-  address:"",
-  fathername:"",
-  mothername:"",
-
-
-})
+ 
 function showUser(event){
   event.preventDefault();
-  console.log(data);
+  setState(false);
+   
 }
 
-  return <div>{/* create form and render component according to steps */}
-  <h2 data-cy="current-step">Step:{Page}</h2>
+  return <div className="DivContainer"> 
+  <h2 data-cy="current-step" className="step-indicator" >Step: <span className="step">{Page}</span> </h2> 
+ 
     <form onSubmit={showUser}>
     
     {Page === 1 && <StepOne setPage={setPage}  data={data}  setdata={setdata}/>}
