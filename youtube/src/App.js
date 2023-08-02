@@ -8,7 +8,7 @@ import { useState } from "react";
 import LoginScreen from "./Components/LoginScreen/LoginScreen";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import WatchScreen from "./Components/Screens/watchscreen/WatchScreen";
 const Leyout = ({ children }) => {
   const [sidebar, toggleSidebar] = useState(false);
 
@@ -18,7 +18,7 @@ const Leyout = ({ children }) => {
   return (
     <>
       <Header handl={handl} />
-      <div className="app__container border">
+      <div className="app__container">
         <Sidebar sidebar={sidebar} handl={handl} />
         <Container>{children}</Container>
       </div>
@@ -52,9 +52,9 @@ const App = () => {
     <Routes>
       <Route path="/"  element={ <Leyout><HomeScreen/></Leyout> } />
       <Route path="/auth"  element={<LoginScreen/>}/>
-      <Route path="/search"  element={   <Leyout><h1>Search is working</h1></Leyout>  }/>
+      <Route path="/search"  element={ <Leyout><h1>Search is working</h1></Leyout>  }/>
       <Route path="*"  element={<Navigate to='/'/>} />
-      
+      <Route path="/watch/:id"  element={ <Leyout><WatchScreen/></Leyout>}/>
     </Routes>
   );
 };

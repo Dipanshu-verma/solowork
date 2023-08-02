@@ -1,6 +1,8 @@
   
 import { useState } from 'react';
 import './_category.scss'
+import { useDispatch } from 'react-redux';
+import { getPopularVideos, getVideosCategory } from '../../Redux/actions/video.action';
 
 const keywords = [
   "All",
@@ -24,9 +26,16 @@ const keywords = [
 
 const Categories = () => {
   const[activeElement,setactiveElement] = useState("All")
-
+const dispatch  = useDispatch()
   function handleClick(value){
     setactiveElement(value)
+    if(value==='All'){
+       
+      dispatch(getPopularVideos());
+    }else{
+      dispatch(getVideosCategory(value));
+    }
+   
   }
   return (
     <div className="CategoriesBar">
