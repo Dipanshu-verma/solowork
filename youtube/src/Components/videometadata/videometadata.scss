@@ -14,14 +14,15 @@
             height: 50px;
         }
         button{
-        background-color:red;
-        border-radius: 0;
-        text-transform: uppercase;
+        background-color:rgb(252, 252, 252);
+        border-radius: 40px;
+        
         letter-spacing: .5px;
-        color: #fff;
+        color: #000000;
+        font-weight: 600;
         &:hover{
-            color: #fff;
-            background-color:red;
+            color: #000000;
+            background-color:rgb(183, 181, 181);
         }
         &:focus{
             border: none;
@@ -30,7 +31,8 @@
         }
 
     }
-    &__description{
+
+    .videoMetaData__description{
         white-space:pre-line ;
         font-size: 0.9rem;
         border-bottom: 0.2px solid $border-color;

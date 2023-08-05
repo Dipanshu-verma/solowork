@@ -1,31 +1,87 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./videohorizontal.scss";
 import request from "../../api";
 import moment from "moment";
 import numeral from "numeral";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Row, Col } from "react-bootstrap";
-const VideoHorizontal = () => {
-  const seconds = moment.duration(1000000).asSeconds();
-  const _duration = moment.utc(seconds * 1000).format("mm:ss");
+import { useNavigate } from "react-router-dom";
+const VideoHorizontal = ({video}) => {
+
+  const {
+    id,
+    snippet:{
+      channelId,channelTitle,description,title,publishedAt,thumbnails:{medium}
+    }
+  }=video
+
+  
+  const[views, setViews] =  useState(null);
+  const[duration, setDuration] = useState(null)
+  const[channelicon, setchannelicon] = useState(null)
+
+  useEffect(() => {
+    const get_video_details = async () => {
+      const {
+        data: { items },
+      } = await request("/videos", {
+        params: {
+          part: "contentDetails,statistics",
+          id: id.videoId,
+        },
+      });
+      setDuration(items[0].contentDetails.duration);
+      setViews(items[0].statistics.viewCount);
+    };
+    get_video_details();
+
+  }, [id]);
+
+
+  useEffect(() => {
+    const get_channel_icon = async () => {
+      const {
+        data: { items },
+      } = await request("/channels", {
+        params: {
+          part: "snippet",
+          id: channelId,
+        },
+      });
+      setchannelicon(items[0].snippet.thumbnails.default)
+      
+    };
+    get_channel_icon();
+  }, [channelId]);
+  
+
+
+  const seconds = moment.duration(duration).asSeconds();
+  const _duration = moment.utc(seconds*1000).format("mm:ss");
+
+  const naviget  = useNavigate();
+  function handdelclick(){
+  naviget(`/watch/${id.videoId}`)
+  }
   return (
     <Row className="videoHoriZontal m-1 py-1">
-      <Col md={5} className="videoHoriZontal__left">
+      <Col md={6} className="videoHoriZontal__left">
         <LazyLoadImage
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiUNDV_EoOELrIMCwRgnniF42NmIM5Epy-6g&usqp=CAU"
+          src={medium.url}
           effect="blur"
           className="videoHoriZontal__thumbnail"
           wrapperClassName="videoHoriZontal__thumbnail-wrapper"
+          onClick={handdelclick}
         />
         <span className="videoHoriZontal__duration">{_duration}</span>
       </Col>
       <Col md={6} className="videoHoriZontal__right p-0">
         <p className="videoHoriZontal__title mb-0">
-          Ba a Full Stack Developer in 1 one month
+           {title}
         </p>
-        <div className="videohoriZontal__channel">the developer</div>
+        <div className="videohoriZontal__channel">{channelTitle}</div>
         <div className="videohoriZontal__details">
-           {numeral(10000).format("0.a")} views • {moment("2022-05-05").fromNow()} 
+           {numeral(views).format("0.a")} views • {moment(publishedAt).fromNow()} 
         </div>
       </Col>
     </Row>
