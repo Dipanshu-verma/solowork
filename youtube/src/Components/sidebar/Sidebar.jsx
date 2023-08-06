@@ -3,9 +3,10 @@ import './_sidebar.scss'
 import {MdSubscriptions,MdExitToApp,MdThumbUp,MdHistory,MdLibraryBooks,MdHome,MdSentimentDissatisfied} from 'react-icons/md'
 import { logout } from '../../Redux/actions/authaction'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+ 
+import { Link } from 'react-router-dom'
 const Sidebar = ({sidebar,handl}) => {
- const naviget  =  useNavigate()
+ 
   const  dispatch = useDispatch()
   function logouthanddler(){
     
@@ -20,10 +21,12 @@ const Sidebar = ({sidebar,handl}) => {
         <MdHome size={23}/>
         <span>Home</span>
        </li>
+       <Link to='/feed/subscriptions'>
        <li>
         <MdSubscriptions size={23}/>
         <span>Subcriptions</span>
        </li>
+       </Link>
        <li>
         <MdThumbUp size={23}/>
         <span>Liked Video</span>

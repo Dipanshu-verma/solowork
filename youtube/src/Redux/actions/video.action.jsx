@@ -5,10 +5,15 @@ import {
   RELETED_VIDEO_FAIL,
   RELETED_VIDEO_REQUEST,
   RELETED_VIDEO_SUCCESS,
+  SEARCH_VIDEO_FAIL,
+  SEARCH_VIDEO_REQUEST,
+  SEARCH_VIDEO_SUCCESS,
   SELECTED_VIDEO_FAIL,
   SELECTED_VIDEO_REQUEST,
   SELECTED_VIDEO_SUCCESS,
+  SUBSCRIPTIONS_CHANNEL_FAIL, SUBSCRIPTIONS_CHANNEL_REQUEST, SUBSCRIPTIONS_CHANNEL_SUCCESS
 } from "../ActionType";
+ 
 import request from "../../api";
 
 export const getPopularVideos = () => async (dispatch, getState) => {
@@ -130,3 +135,71 @@ export const getReletedVideo = (id) => async (dispatch) => {
     });
   }
 };
+
+
+export const getVideoBySearch=(query)=> async (dispatch,getState) =>{
+  try{
+
+    dispatch({
+      type:SEARCH_VIDEO_REQUEST,
+    });
+
+    const { data } = await request("/search", {
+      params: {
+        part:"snippet",
+        q:query,
+        maxResults:20,
+        type:'video'
+      },
+    });
+   console.log(data);
+    dispatch({
+      type:SEARCH_VIDEO_SUCCESS,
+      payload: data.items,
+    });
+
+  }catch(error){
+   console.log( error.message);
+    dispatch({
+      type:SEARCH_VIDEO_FAIL,
+      payload: error.message,
+    });
+  }
+} 
+
+
+ 
+export const getSubscriptionsChannel = () => async (dispatch, getState) => {
+
+  try {
+   
+    dispatch({
+      type:SUBSCRIPTIONS_CHANNEL_REQUEST,
+    })
+
+    const { data } = await request("/subscriptions", {
+      params: {
+        part: "snippet,contentDetails",
+        maxResults:10,
+        mine: true,
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+
+    console.log("Subscription API Response:", data);
+
+    dispatch({
+      type:SUBSCRIPTIONS_CHANNEL_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    console.log("Error fetching subscription status:", error.response.data);
+    dispatch({
+      type:SUBSCRIPTIONS_CHANNEL_FAIL,
+      payload:error.response.data,
+    })
+  }
+
+}

@@ -1,0 +1,15 @@
+@import '../../_base.scss';
+
+.icon-thumnail{
+    @include line-clamp(3)
+    
+}
+.channel-icon{
+  
+    img{
+        width:150px;
+         height:150px; 
+         border-radius:50%;
+         margin-left:3rem;
+    }
+}
