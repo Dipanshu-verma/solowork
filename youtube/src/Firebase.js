@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 const firebaseConfig = {
-  apiKey: "AIzaSyDNM-cJZOvyzyzgza9Bt0mXly8upMbTVzo",
+  apiKey: "AIzaSyBCk6jR4lQIEshZCWix7rjk9OutEGzh2Is",
   authDomain: "tube-you-pro.firebaseapp.com",
   projectId: "tube-you-pro",
   storageBucket: "tube-you-pro.appspot.com",
@@ -18,7 +18,7 @@ const firebaseConfig = {
 // };
 
 // const firebaseConfig = {
-//   apiKey: "AIzaSyClO4VuUWBy-x3dSIomGfG8mWewiRzxe7Y",
+//   apiKey: "AIzaSyBCk6jR4lQIEshZCWix7rjk9OutEGzh2Is",
 //   authDomain: "tubeclone-c6c32.firebaseapp.com",
 //   projectId: "tubeclone-c6c32",
 //   storageBucket: "tubeclone-c6c32.appspot.com",

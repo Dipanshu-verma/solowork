@@ -1,4 +1,7 @@
 import {
+  CHANNEL_VIDEO_FAIL,
+  CHANNEL_VIDEO_REQUEST,
+  CHANNEL_VIDEO_SUCCESS,
   HOME_VIDEOS_FAIL,
   HOME_VIDEOS_REQUEST,
   HOME_VIDEOS_SUCCESS,
@@ -198,6 +201,51 @@ export const getSubscriptionsChannel = () => async (dispatch, getState) => {
     console.log("Error fetching subscription status:", error.response.data);
     dispatch({
       type:SUBSCRIPTIONS_CHANNEL_FAIL,
+      payload:error.response.data,
+    })
+  }
+
+}
+
+export const getVideosatChannel = (id) => async (dispatch) => {
+
+  try {
+   
+    dispatch({
+      type:CHANNEL_VIDEO_REQUEST,
+    })
+
+    const { data:{items} } = await request("/channels", {
+      params: {
+        part: "contentDetails",
+       id:id,
+      },
+     
+    });
+
+     
+const uploadPlaylistId = items[0]?.contentDetails?.relatedPlaylists?.uploads
+ 
+
+// get the video using id 
+
+const { data } = await request("/playlistItems", {
+  params: {
+    part: "contentDetails,snippet",
+   playlistId:uploadPlaylistId,
+   maxResults:30,
+  },
+ 
+});
+console.log(data);
+    dispatch({
+      type:CHANNEL_VIDEO_SUCCESS,
+      payload:data.items,
+    });
+  } catch (error) {
+    console.log("Error fetching subscription status:", error.response.data);
+    dispatch({
+      type:CHANNEL_VIDEO_FAIL,
       payload:error.response.data,
     })
   }

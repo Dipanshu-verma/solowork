@@ -49,6 +49,7 @@ width: 100%;
       gap: 0;
      .video__title{
         margin-top: -0.2rem;
+        color: #fff;
         @include line-clamp(2);
         // overflow: hidden;
         // display: -webkit-box;
