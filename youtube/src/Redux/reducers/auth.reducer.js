@@ -45,6 +45,7 @@ export const authreducer = (prevState = { intial }, action) => {
         user: payload,
       };
     case LOG_OUT:
+   
       return {
         ...prevState,
         accessToken: null,

@@ -12,7 +12,6 @@ const VideoHorizontal = ({ video, searchScreeen}) => {
     snippet: {
       channelId,
       channelTitle,
-      description,
       title,
       publishedAt,
       thumbnails: { medium },

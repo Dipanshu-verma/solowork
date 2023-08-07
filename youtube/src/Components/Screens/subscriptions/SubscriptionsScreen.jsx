@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import "./subscriptions.scss"
 import { useDispatch, useSelector } from 'react-redux'
 import {getSubscriptionsChannel } from '../../../Redux/actions/video.action';
-import VideoHorizontal from '../../videohorizontal/VideoHorizontal';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import {Container } from 'react-bootstrap';
 import CardSub from '../../subscriptioncard/CardSub';

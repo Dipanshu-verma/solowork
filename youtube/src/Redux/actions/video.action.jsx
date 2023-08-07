@@ -140,7 +140,7 @@ export const getReletedVideo = (id) => async (dispatch) => {
 };
 
 
-export const getVideoBySearch=(query)=> async (dispatch,getState) =>{
+export const getVideoBySearch=(query)=> async (dispatch) =>{
   try{
 
     dispatch({
@@ -179,7 +179,7 @@ export const getSubscriptionsChannel = () => async (dispatch, getState) => {
     dispatch({
       type:SUBSCRIPTIONS_CHANNEL_REQUEST,
     })
-
+ 
     const { data } = await request("/subscriptions", {
       params: {
         part: "snippet,contentDetails",
@@ -190,13 +190,13 @@ export const getSubscriptionsChannel = () => async (dispatch, getState) => {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
     });
-
     console.log("Subscription API Response:", data);
 
     dispatch({
       type:SUBSCRIPTIONS_CHANNEL_SUCCESS,
       payload: data.items,
     });
+
   } catch (error) {
     console.log("Error fetching subscription status:", error.response.data);
     dispatch({

@@ -24,7 +24,7 @@ dispatch(getChannelDetails(channelId));
 console.log("channel",videos);
   return (
    <>
-   <div className='px-2 py-2 my-2 d-flex   align-items-center channelHeader'>
+   <div className='px-5 py-2 my-2 d-flex align-items-center channelHeader'>
      <div className='d-flex align-items-center channelHeader__left' >
      <img src={snippet?.thumbnails?.default?.url} alt="" />
     <div className='ml-3 channelHeader_details' >
@@ -37,8 +37,10 @@ console.log("channel",videos);
     
      </span>
     </div>
+
+   
      </div>
-<button>Subscribe</button>
+     <button>Subscribe</button>
    </div>
     <Container>
      <Row className='mt-2'>

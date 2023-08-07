@@ -7,6 +7,7 @@ import {IoMdNotifications} from "react-icons/io";
 import {MdApps} from "react-icons/md";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Header = ({handl}) => {
 
 
@@ -16,7 +17,11 @@ const Header = ({handl}) => {
     e.preventDefault();
 naviget(`/search/${input}`)
   }
-
+  
+  const {intial} =  useSelector(state=>state.auth);
+  
+  const photourl =  intial?.user?.photoURL;
+  
   return (
     <div className="border border-dark header">
       <FaBars className="header__menu" size={26} onClick={()=>{handl()}} />
@@ -36,7 +41,7 @@ naviget(`/search/${input}`)
       <div className="header__icons">
         <IoMdNotifications size={28}/>
         <MdApps size={28}/>
-        <img src="https://ps.w.org/user-avatar-reloaded/assets/icon-256x256.png?rev=2540745" alt="" />
+        <img src={photourl} alt="" />
       </div>
     </div>
   );

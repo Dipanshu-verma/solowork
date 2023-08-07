@@ -15,7 +15,7 @@ useEffect(()=>{
     navigate('/');
   }
 
-},[accessToken])
+},[accessToken,navigate])
 
   function handdleLogin(){
   dispatch(login());

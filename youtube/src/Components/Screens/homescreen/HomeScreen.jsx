@@ -52,12 +52,12 @@ const HomeScreen = () => {
               </Col>
             );
           }):
-           [...Array(20).map(()=>{
-            <Col lg={3} md={4}>
+           [...Array(20)].map(()=>{
+            return <Col lg={3} md={4}>
           
             <SkeletonVideo/>
             </Col>
-           })]
+           })
           }
         </InfiniteScroll>
       </Row>
