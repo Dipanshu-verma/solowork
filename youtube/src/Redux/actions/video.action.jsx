@@ -190,8 +190,8 @@ export const getSubscriptionsChannel = () => async (dispatch, getState) => {
         Authorization: `Bearer ${getState().auth.accessToken}`,
       },
     });
-    console.log("Subscription API Response:", data);
-
+    
+console.log(data);
     dispatch({
       type:SUBSCRIPTIONS_CHANNEL_SUCCESS,
       payload: data.items,
@@ -237,7 +237,6 @@ const { data } = await request("/playlistItems", {
   },
  
 });
-console.log(data);
     dispatch({
       type:CHANNEL_VIDEO_SUCCESS,
       payload:data.items,
