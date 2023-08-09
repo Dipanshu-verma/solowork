@@ -16,16 +16,16 @@ const Sidebar = ({sidebar,handl}) => {
   }
   // let classes = sidebar? ' sidebar sidebarshow':'sidebar'
   return (
-    <nav className= {sidebar? ' sidebar show':'sidebar'} onClick={()=>handl()}>
+    <nav className= {sidebar? 'sidebar show':'sidebar'} onClick={()=>handl()}>
 
-     <Link to="/">
+     <Link to="/" className='link' >
        <li>
         <MdHome size={23}/>
         <span>Home</span>
        </li>
-</Link>
+       </Link>
 
-       <Link to='/feed/subscriptions'>
+       <Link to='/feed/subscriptions' className='link'>
        <li>
         <MdSubscriptions size={23}/>
         <span>Subcriptions</span>

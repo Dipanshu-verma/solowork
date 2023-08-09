@@ -11,16 +11,16 @@
 position: fixed;
 top: 0;
 z-index: 999;
-    &__menu{
-        display: none;
-    }
-    &__logo{
+ 
+    .header__logo{
         width: 30px;
         height: 30px;
         object-fit: contain;
         display: block;
     }
-
+ .header__menu{
+    cursor: pointer;
+ }
     form{
         flex: 0.5;
         display: flex;
@@ -58,7 +58,7 @@ z-index: 999;
             color: white;
         }
     }
-    &__icons{
+    .header__icons{
         // border: 1px solid red;
         flex: 0.15;
         display: flex;
@@ -80,15 +80,12 @@ z-index: 999;
       .header{
         padding: 1rem;
         form{
-            flex: 1;
+            flex: .6;
         }
-        &__menu{
-            display: block;
-        }
-        &__logo{
+        .header__logo{
             display: none;
         }
-       &__icons>*:not(img){
+        .header__icons>*:not(img){
         display: none;
        }
       }

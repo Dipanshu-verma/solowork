@@ -18,20 +18,22 @@ const Header = ({handl}) => {
 naviget(`/search/${input}`)
   }
   
-  const {intial} =  useSelector(state=>state.auth);
+  const {user} =  useSelector(state=>state.auth);
   
-  const photourl =  intial?.user?.photoURL;
-  
+  const urlphoto = user?.photoURL;
+  console.log(user, urlphoto);
   return (
     <div className="border border-dark header">
+    <div className="d-flex align-items-center gap-3" >
       <FaBars className="header__menu" size={26} onClick={()=>{handl()}} />
-
+    
+ 
       <img
         src="https://pngimg.com/uploads/youtube/youtube_PNG2.png"
         alt=""
         className="header__logo"
       />
-
+   </div>
       <form onSubmit={handleSearch}>
         <input type="text" placeholder="Search" value={input}  onChange={(e)=>setInput(e.target.value)} />
         <button type="submit">
@@ -41,7 +43,7 @@ naviget(`/search/${input}`)
       <div className="header__icons">
         <IoMdNotifications size={28}/>
         <MdApps size={28}/>
-        <img src={photourl} alt="" />
+        <img src={urlphoto} alt="" />
       </div>
     </div>
   );

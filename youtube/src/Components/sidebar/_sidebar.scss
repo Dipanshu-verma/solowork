@@ -5,15 +5,23 @@
     padding-top: 2rem;
     display: flex;
     flex-direction: column;
-    // align-items: center;
-    width: 250px;
+    display: none;
+     
+    width: 200px;
     height: 90vh;
      
     transition: 0.3s ease-in;
     z-index: 100;
-    position: sticky;
-    top: 0;
+    position:fixed;
+    top: 10vh;
     left: 0;
+   color: #fff;
+  
+    .link{
+        text-decoration: none;
+        color: #fff;
+    }
+
     li{
         display: flex;
         align-items: center;
@@ -34,14 +42,16 @@
     hr{
         background-color: $border-color;
     }
-    &.show{
-        transform: translate(0);
-    }
+   
 }
+.show{
+     display: block;
+}
+ 
 @media (max-width: $breakpoint-medium){
     .sidebar{
-        width: 90px;
-
+        width: 70px;
+       
         li{
             justify-content: center;
             span{
@@ -52,10 +62,11 @@
 
 }
 
+
 @media (max-width:$breakpoint-small){
 
     .sidebar{
-       transform: translate(-100%);
+        
        position: fixed;
        z-index: 99;
     }

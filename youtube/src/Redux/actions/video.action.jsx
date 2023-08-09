@@ -29,7 +29,7 @@ export const getPopularVideos = () => async (dispatch, getState) => {
         part: "snippet,contentDetails,statistics",
         chart: "mostPopular",
         regionCode: "IN",
-        maxResults: 20,
+        maxResults: 30,
         pageToken: getState().homeVideos.nextPageToken,
       },
     });
