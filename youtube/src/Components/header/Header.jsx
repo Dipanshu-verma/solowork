@@ -17,6 +17,8 @@ const Header = ({handl}) => {
     e.preventDefault();
 naviget(`/search/${input}`)
   }
+
+
   
   const {user} =  useSelector(state=>state.auth);
   
@@ -34,12 +36,15 @@ naviget(`/search/${input}`)
         className="header__logo"
       />
    </div>
+    
       <form onSubmit={handleSearch}>
         <input type="text" placeholder="Search" value={input}  onChange={(e)=>setInput(e.target.value)} />
         <button type="submit">
           <AiOutlineSearch size={22} />
         </button>
       </form>
+     
+ 
       <div className="header__icons">
         <IoMdNotifications size={28}/>
         <MdApps size={28}/>

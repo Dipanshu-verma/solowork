@@ -113,6 +113,7 @@ export const getVdeoById = (id) => async (dispatch) => {
 };
 
 export const getReletedVideo = (id) => async (dispatch) => {
+  console.log(id);
   try {
     dispatch({
       type: RELETED_VIDEO_REQUEST,

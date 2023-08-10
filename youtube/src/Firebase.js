@@ -18,7 +18,7 @@ import 'firebase/compat/auth';
 // };
 
 // const firebaseConfig = {
-//   apiKey: "AIzaSyBCk6jR4lQIEshZCWix7rjk9OutEGzh2Is",
+//   apiKey: "AIzaSyABn5MMRNOX2blaEyhfIeTRYOgBFHKDu1M",
 //   authDomain: "tubeclone-c6c32.firebaseapp.com",
 //   projectId: "tubeclone-c6c32",
 //   storageBucket: "tubeclone-c6c32.appspot.com",
@@ -26,8 +26,17 @@ import 'firebase/compat/auth';
 //   appId: "1:640641529188:web:d8aafa3a2d037689587671"
 // };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAcSHMpkPYazrAZvjcLXfvrja08a-7VroU",
+//   authDomain: "my-tube-clone-7eda2.firebaseapp.com",
+//   projectId: "my-tube-clone-7eda2",
+//   storageBucket: "my-tube-clone-7eda2.appspot.com",
+//   messagingSenderId: "283814602509",
+//   appId: "1:283814602509:web:82064cde7a9b50d755f244"
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCAolXijmNy7jwx2SyBBoXf9cmizebO_mw",
+  apiKey: "AIzaSyAVha1YR7Nrq_nr7qRZtQ5e94E-LMkD4yo",
   authDomain: "my-project-of-yt.firebaseapp.com",
   projectId: "my-project-of-yt",
   storageBucket: "my-project-of-yt.appspot.com",
