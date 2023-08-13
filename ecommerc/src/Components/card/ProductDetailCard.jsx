@@ -1,38 +1,33 @@
-import { Button, Card, CardBody, CardFooter, Divider, HStack, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Button, Card, CardBody, CardFooter, Divider, HStack, Heading, Image, Stack, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
+import RatingStar from './RatingStar'
 
 const ProductDetailCard = ({product}) => {
   return (
-    <Card w='70%' boxShadow="0 0 5px black">
-    <CardBody>
-      <Image
-        src={product.image}
-        boxSize='200px'
-      />
-      <Stack mt='6' spacing='3'>
-        <Heading size='md'>{product.title.slice(0,20)}</Heading>
-         
-         <Stack spacing="4rem">
-         <Text color='black' fontWeight="600" fontSize='xx'>
-       price: ${product.price}
-        </Text>
-          <Text color='black' fontWeight="600"  fontSize='xx'>
-            rating: {product.rating.rate}
+    <HStack w="80%" mt="18vh" mb="1rem" ml="1rem" position="relative" borderRadius="5px" gap="10" p="1.5rem" boxShadow="0 0 10px black">
+      <Image src={product.image} w="250px" objectFit="cover"/>
+      <Box display="flex" flexDirection="column" gap=".7rem" mb="4rem">
+        <Heading fontSize="25px">
+         {product.title}
+        </Heading>
+        <Text fontSize="18px" fontWeight="600">
+            Price: ${product.price}
           </Text>
-         </Stack>
        
-      </Stack>
-    </CardBody>
-    <Divider />
-    <CardFooter>
-     
-        <Button   colorScheme='green'>
-       Add to cart
-        </Button>
-         
- 
-    </CardFooter>
-  </Card>
+           <Stack display="flex" flexDirection="row" gap="1rem"> 
+        <RatingStar rate= {product.rating.rate}/>
+        <Text fontWeight="600">
+          {product.rating.count} reviews
+        </Text>
+        </Stack>
+        <Text>
+         Description: {product.description}
+          </Text>
+
+       
+      </Box>
+      <Button color='#fff' bg="black" border={"2px solid black"} _hover={{ color:"black",bg:"#fff",boxShadow:"0 0 10px black" }}  position="absolute" right="2rem" bottom="1.5rem">Add to Cart</Button>
+    </HStack>
   )
 }
 

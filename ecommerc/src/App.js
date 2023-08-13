@@ -20,7 +20,7 @@ import ProductDetails from './Components/Screens/ProductDetails';
 function App() {
   return (
     <>
-     {/* <Navbar/> */}
+     <Navbar/>
      <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/productdetail' element={<ProductDetails/>}/>
