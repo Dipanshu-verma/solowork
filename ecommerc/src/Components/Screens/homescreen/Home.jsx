@@ -3,20 +3,34 @@ import benner from '../../../benner.jpg'
 import { distance } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../../Redux/actions/productaction'
+import { Box, Grid, GridItem, Skeleton } from '@chakra-ui/react'
+import CardProd from '../../card/Card'
 const Home = () => {
 const dispatch =  useDispatch();
 useEffect(()=>{
  dispatch(getProduct())
 },[dispatch])
  
-const {products} = useSelector(state=>state)
+const {products,loading} = useSelector(state=>state.products)
  
   return (
     <div>
        <img src={benner} alt="" style={{height:"90vh",width:"100%",marginTop:"13vh"}}/>
-       
-        
-
+       <Grid templateColumns='repeat(4, 1fr)' gap={6} p="2rem" >
+        {
+           !loading? 
+           products.map((product)=>{
+           return <GridItem h="100%">
+            <CardProd product={product} key={product.id} />
+           </GridItem>
+          }):[...Array(20)].map(()=>{
+            return <Box>
+            <Skeleton height={"50vh"} width="300px" mb=".5rem"/>
+            <Skeleton height={"10vh"} width="300px"/>
+            </Box> 
+          })
+        }
+</Grid>
     </div>
   )
 }
