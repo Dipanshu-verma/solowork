@@ -26,6 +26,7 @@ const Video = ({ video, channelScreen }) => {
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
 
   const videoId = id?.videoId || contentDetails?.videoId || id;
+  
   useEffect(() => {
     const get_video_details = async () => {
       const {

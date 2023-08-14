@@ -113,7 +113,7 @@ export const getVdeoById = (id) => async (dispatch) => {
 };
 
 export const getReletedVideo = (id) => async (dispatch) => {
-  console.log(id);
+ 
   try {
     dispatch({
       type: RELETED_VIDEO_REQUEST,
@@ -123,7 +123,7 @@ export const getReletedVideo = (id) => async (dispatch) => {
       params: {
         part: "snippet",
         relatedToVideoId:id,
-        maxResults:25,
+        maxResults:15,
         type:'video'
       },
     });

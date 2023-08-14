@@ -1,18 +1,15 @@
-import { CardBody,Card, Image, Stack, Heading, Text, Divider, CardFooter, Button, HStack, ButtonGroup } from '@chakra-ui/react'
+import { CardBody,Card, Image, Stack, Heading, Text, Divider, CardFooter, Button, HStack,  } from '@chakra-ui/react'
 import React from 'react'
-import { useDispatch } from 'react-redux';
+ 
 import { useNavigate } from 'react-router-dom'
-import { getDetailProduct } from '../../Redux/actions/productaction';
+ 
 
-const CardProd = ({product}) => {
+const CardProd = ({product,productscreen}) => {
 const navigate  =  useNavigate();
-const dispatch =  useDispatch();
 function handleProductDetails(){
-// setTimeout(()=>{
-  navigate(`/productdetail`)
-// },100)
-
-dispatch(getDetailProduct(product.id));
+  navigate(`/productdetail/${product.id}`)
+sessionStorage.setItem("detailItem",JSON.stringify(product))
+ 
 }
   return (
     <Card maxW='sm' boxShadow="0 0 5px black" align="center" onClick={handleProductDetails}>
@@ -37,10 +34,12 @@ dispatch(getDetailProduct(product.id));
     </CardBody>
     <Divider />
     <CardFooter>
-     
-        <Button   colorScheme='green'>
+     {
+      productscreen? <Button color='#fff' bg="black" border={"2px solid black"} _hover={{ color:"black",bg:"#fff",boxShadow:"0 0 10px black" }} >Add to Cart</Button>:<Button colorScheme='green'>
        Buy Now
         </Button>
+     }
+        
          
  
     </CardFooter>

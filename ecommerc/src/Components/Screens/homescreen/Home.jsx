@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import benner from '../../../benner.jpg'
-import { distance } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../../Redux/actions/productaction'
 import { Box, Grid, GridItem, Skeleton } from '@chakra-ui/react'
@@ -12,7 +11,7 @@ useEffect(()=>{
 },[dispatch])
  
 const {products,loading} = useSelector(state=>state.products)
- 
+ console.log(products);
   return (
     <div>
        <img src={benner} alt="" style={{height:"90vh",width:"100%",marginTop:"13vh"}}/>

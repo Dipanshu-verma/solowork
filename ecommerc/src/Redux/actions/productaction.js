@@ -1,4 +1,5 @@
-import { PRODUCT_DETAIL_FAIL, PRODUCT_DETAIL_REQUEST, PRODUCT_DETAIL_SUCCESS, PRODUCT_FAIL, PRODUCT_REQUEST, PRODUCT_SUCCESS } from "../ActionTypes"
+
+import {  PRODUCT_REQUEST, PRODUCT_SUCCESS } from "../ActionTypes"
 import axios from 'axios'
 export const getProduct=()=> async (dispatch)=>{
 
@@ -13,35 +14,72 @@ export const getProduct=()=> async (dispatch)=>{
       })
    }).catch((error)=>{
     dispatch({
-        type:PRODUCT_FAIL,
+        type:PRODUCT_SUCCESS,
         payload:error,
     })
    })
-
-
-
-
 }
 
-export const getDetailProduct=(id)=> async (dispatch)=>{
+ 
+export const getProductbYCategory=(category)=> async (dispatch)=>{
 
   dispatch({
-      type:PRODUCT_DETAIL_REQUEST
+    type:PRODUCT_REQUEST
   })
   
-await axios.get(`https://fakestoreapi.com/products/${id}`).then((res)=>{
+await axios.get(`https://fakestoreapi.com/products/category/${category}`).then((res)=>{
     dispatch({
-      type:PRODUCT_DETAIL_SUCCESS,
+      type:PRODUCT_SUCCESS,
       payload:res.data,
     })
  }).catch((error)=>{
   dispatch({
-      type:PRODUCT_DETAIL_FAIL,
+    type:PRODUCT_SUCCESS,
       payload:error,
   })
  })
+}
 
+export const getSortProductsbyPrice=(order)=> async (dispatch,getState)=>{
 
+  dispatch({
+    type:PRODUCT_REQUEST
+  })
+  
+  let dataArr  = getState().products;
 
+  const products =  dataArr.products.sort((a,b)=>{
+    if(order==='asc'){
+      return a.price-b.price
+    }else{
+      return b.price-a.price
+    }
+  })
+  dispatch({
+    type:PRODUCT_SUCCESS,
+    payload:products
+  })
+  
+}
 
+export const getSortProductsbyRating=(order)=> async (dispatch,getState)=>{
+
+  dispatch({
+    type:PRODUCT_REQUEST
+  })
+  
+  let dataArr  = getState().products;
+
+  const products =  dataArr.products.sort((a,b)=>{
+    if(order==='asc'){
+      return a.rating.rate-b.rating.rate
+    }else{
+      return b.rating.rate-a.rating.rate
+    }
+  })
+  dispatch({
+    type:PRODUCT_SUCCESS,
+    payload:products
+  })
+  
 }
