@@ -14,7 +14,7 @@ import {
   useDisclosure,
   useTheme,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineLogin } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
@@ -23,10 +23,11 @@ import CartCard from "../card/cartCard";
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-
-
-  let cartItems =  JSON.parse(localStorage.getItem("cartItems"))||[];
-
+ const[cartItems,setcartItems] =  useState([])
+ 
+useEffect(()=>{
+setcartItems(JSON.parse(localStorage.getItem("cartItems")))
+},[cartItems])
 
 
   return (
@@ -57,7 +58,7 @@ const Navbar = () => {
 
           <Center ref={btnRef} color="#000000" onClick={onOpen} position="relative">
             <BsFillCartFill size={"2rem"} />
-            <span style={{position:"absolute", top:"-.5rem", right:"-.5rem" ,width:"25px",height:"25px",borderRadius:"50%",backgroundColor:"#fff",color:"red", display:"flex",justifyContent:"center", alignItems:"center"}}>{cartItems.length}</span>
+            <span style={{position:"absolute", top:"-.5rem", right:"-.5rem" ,width:"25px",height:"25px",borderRadius:"50%",backgroundColor:"#000000",color:"#fff", display:"flex",justifyContent:"center", alignItems:"center", display: cartItems.length === 0 ? 'none' : 'flex'}}>{cartItems.length}</span>
           </Center>
 
           <Drawer
@@ -70,7 +71,7 @@ const Navbar = () => {
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader color="red">Cart Items <span> {cartItems.length} </span> </DrawerHeader>
+              <DrawerHeader color="red"  >Cart Items <span  > {cartItems.length} </span> </DrawerHeader>
 
               <DrawerBody>
                 {cartItems?.length === 0 ? (
@@ -79,7 +80,7 @@ const Navbar = () => {
                   <ul>
                    { cartItems.map((item) => (
                         
-                       <CartCard product={item}/>
+                       <CartCard product={item} setcartItems={setcartItems}/>
                   
             
                     ))}
