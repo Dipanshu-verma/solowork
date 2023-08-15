@@ -18,10 +18,16 @@ import React from "react";
 import { AiOutlineLogin } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import CartCard from "../card/cartCard";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+
+
+  let cartItems =  JSON.parse(localStorage.getItem("cartItems"))||[];
+
+
 
   return (
     <div style={{ position: "fixed", width: "100%", top: "0", zIndex: "100" }}>
@@ -40,18 +46,18 @@ const Navbar = () => {
           letterSpacing="2px"
           color="RGBA(0, 0, 0, 0.92)"
         >
-          {" "}
-          ECORE{" "}
+           
+          ECORE 
         </Center>
         <Flex justifyContent="space-between" alignItems="center" gap="2rem">
-          <Link >Home</Link>
+          <Link to='/' >Home</Link>
           <Link to='/Products' >Products</Link>
           <Link>About</Link>
           <Button leftIcon={<AiOutlineLogin />}>Login</Button>
 
-          <Center ref={btnRef} color="#000000" onClick={onOpen}>
-            <BsFillCartFill />
-            <span></span>
+          <Center ref={btnRef} color="#000000" onClick={onOpen} position="relative">
+            <BsFillCartFill size={"2rem"} />
+            <span style={{position:"absolute", top:"-.5rem", right:"-.5rem" ,width:"25px",height:"25px",borderRadius:"50%",backgroundColor:"#fff",color:"red", display:"flex",justifyContent:"center", alignItems:"center"}}>{cartItems.length}</span>
           </Center>
 
           <Drawer
@@ -59,22 +65,26 @@ const Navbar = () => {
             placement="right"
             onClose={onClose}
             finalFocusRef={btnRef}
+            size="md"
           >
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader>Cart Items <span></span> </DrawerHeader>
+              <DrawerHeader color="red">Cart Items <span> {cartItems.length} </span> </DrawerHeader>
 
               <DrawerBody>
-                {/* {cartItems.length === 0 ? (
-                  <p>Your cart is empty.</p>
+                {cartItems?.length === 0 ? (
+                  <h1>Your cart is empty.</h1>
                 ) : (
                   <ul>
-                    {cartItems.map((item, index) => (
-                      <li key={index}>{item}</li>
+                   { cartItems.map((item) => (
+                        
+                       <CartCard product={item}/>
+                  
+            
                     ))}
                   </ul>
-                )} */}
+                )}
               </DrawerBody>
 
               <DrawerFooter>
