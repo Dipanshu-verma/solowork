@@ -5,8 +5,8 @@ import { BiWorld } from 'react-icons/bi';
 import img1 from './../Assets/html.png';
 import img2 from './../Assets/css.png';
 import img3 from './../Assets/javascript.png';
-import img4 from './../Assets/plantorder.png';
-import img5 from './../Assets/overstock1.png';
+import img4 from './../Assets/Nykaa.png';
+import img5 from './../Assets/haan.png';
 import img6 from './../Assets/birthday.png';
 import img7 from './../Assets/react.png';
 import img8 from './../Assets/travelapp2.png';
@@ -25,28 +25,28 @@ const projectsData = [
   },
 
   {
-    title: 'Plant Order',
+    title: 'Nykaa',
     image: img4,
-    description: 'PlantOrder is an online platform for ordering a wide variety of plants. Discover the perfect green companions to enhance your living spaces and create a tranquil environment.',
+    description: 'Nykaa is an e-commerce website that offers a wide range of beauty and wellness products. With a user-friendly interface and a vast selection of brands and products.',
     techStack: [img1, img2, img3],
-    aLink:"https://github.com/saurabhWakde/-Plant_Order_Application",
-    liveLink:"https://plant-order-website.vercel.app/"
+    aLink:"https://github.com/shivamcalis1998/teamNakya",
+    liveLink:"https://fantastic-squirrel-6303d3.netlify.app/"
   },
   {
-    title: 'Overstock',
+    title: 'Haan Sanitizer',
     image: img5,
     description: 'Overstock is a user-friendly platform for discounted, high-quality furniture with intuitive search and seamless checkout.',
     techStack: [img1, img2, img3],
-    aLink:"https://github.com/RapidKS/OverStock_Project",
-    liveLink:"https://radiant-nougat-5767ba.netlify.app/index.html"
+    aLink:"https://github.com/samarjeetpatankar/Hand-Sanitizer-website",
+    liveLink:"https://haan-website-clone-pt12.netlify.app/"
   },
   {
-    title: 'Birthday App',
+    title: 'quize App',
     image: img6,
     description: 'The Birthday Reminder App helps you stay organized by tracking upcoming birthdays. Never miss a special day with ease.',
     techStack: [img2, img3, img7],
     aLink:"https://github.com/Swetarani-Patel/mywork/tree/main/birthdayrem",
-    liveLink:"https://unique-wisp-0f2b9b.netlify.app/"
+    liveLink:"https://github.com/Dipanshu-verma/solowork/tree/main/Questions/quizeapp_noapi"
   },
 
   {
@@ -54,7 +54,7 @@ const projectsData = [
     image: img10,
     description: 'Interactive Todo list that updates in real-time with each addition, update, or deletion of a task.',
     techStack: [img2, img3, img7],
-    aLink:"https://github.com/Swetarani-Patel/mywork/tree/main/reactTodo",
+    aLink:"https://github.com/Dipanshu-verma/solowork/tree/main/Questions/todo",
     liveLink:"https://github.com/Swetarani-Patel/mywork/tree/main/travelapp"
   },
   {

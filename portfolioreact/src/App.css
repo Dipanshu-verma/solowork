@@ -394,14 +394,14 @@ font-size: 40px;
 
 }
 #tech-stack{
- 
+ position: absolute;
   display: flex;
-  /* align-items: center; */
-  justify-content:center;
-  align-items:flex-end;
    
-  margin-bottom: 10px;
-
+  justify-content:center;
+  align-items:center;
+   
+   
+bottom: 0;
 }
 #tech-stack >img{
   width: 15%;
@@ -425,7 +425,7 @@ font-size: 40px;
   font-size: 20px;
   color: #0ef;
   text-decoration: none;
-  
+  padding-top: .3rem;
 }
 #live-btn{
  
