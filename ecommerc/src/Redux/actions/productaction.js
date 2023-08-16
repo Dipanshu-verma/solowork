@@ -1,5 +1,5 @@
 
-import {  PRODUCT_REQUEST, PRODUCT_SUCCESS } from "../ActionTypes"
+import {PRODUCT_REQUEST, PRODUCT_SUCCESS } from "../ActionTypes"
 import axios from 'axios'
 export const getProduct=()=> async (dispatch)=>{
 
@@ -83,3 +83,6 @@ export const getSortProductsbyRating=(order)=> async (dispatch,getState)=>{
   })
   
 }
+
+
+ 

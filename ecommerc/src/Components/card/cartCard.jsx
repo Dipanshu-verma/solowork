@@ -4,38 +4,48 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 import RatingStar from "./RatingStar";
-const CartCard = ({ product,setcartItems }) => {
+import { useDispatch, useSelector } from "react-redux";
+import { setTotalPrice, setcartItems } from "../../Redux/actions/cartaction";
+const CartCard = ({product}) => {
   const [quant, setQuant] = useState(
     localStorage.getItem(`quan_${product.id}`) || 1
   );
-
+  const dispatch =  useDispatch();
+  const{totalPrice} =  useSelector(state=>state.cart);
   function handleminus() {
     let quan = localStorage.getItem(`quan_${product.id}`) || 1;
     quan = Number(quan);
     if (quan !== 1) {
       quan -= 1;
-
+     
       setQuant(quan);
       localStorage.setItem(`quan_${product.id}`, quan);
+      dispatch(setTotalPrice(totalPrice-product.price))
     }
   }
 
   function handleplus() {
     let quan = localStorage.getItem(`quan_${product.id}`) || 1;
     quan = Number(quan);
-    console.log(typeof quan);
+     
     quan += 1;
+   
     setQuant(quan);
     localStorage.setItem(`quan_${product.id}`, quan);
+    dispatch(setTotalPrice(totalPrice+product.price))
   }
+
+  
+
 
   function handleDelete(){
 let items = JSON.parse(localStorage.getItem("cartItems"))
  
     let index = items.findIndex(element => element.id === product.id);
      items.splice(index,1)
+     dispatch(setcartItems(items))
      localStorage.setItem("cartItems",JSON.stringify(items));
-     setcartItems(items)
+ 
   }
 
 

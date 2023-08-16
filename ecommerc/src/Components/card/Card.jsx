@@ -11,8 +11,10 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
+import { setcartItems } from "../../Redux/actions/cartaction";
 
 const CardProd = ({ product, productscreen }) => {
   const navigate = useNavigate();
@@ -20,6 +22,7 @@ const CardProd = ({ product, productscreen }) => {
   function handleProductDetails() {
     navigate(`/productdetail/${product.id}`);
   }
+const dispatch =  useDispatch();
 
   function handleAddToCart() {
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -30,8 +33,11 @@ const CardProd = ({ product, productscreen }) => {
       }
     });
     if (!bool) {
+      
       cartItems.push(product);
+    
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      dispatch(setcartItems(cartItems))
     }
   }
   return (

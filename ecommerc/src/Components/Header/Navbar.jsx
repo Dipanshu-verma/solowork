@@ -11,6 +11,7 @@ import {
   DrawerOverlay,
   Flex,
   Input,
+  Text,
   useDisclosure,
   useTheme,
 } from "@chakra-ui/react";
@@ -19,15 +20,16 @@ import { AiOutlineLogin } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import CartCard from "../card/cartCard";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
- const[cartItems,setcartItems] =  useState([])
+//  const[cartItems,setcartItems] =  useState([])
+
+const{cartItems,totalPrice} =  useSelector(state=>state.cart);
+   
  
-useEffect(()=>{
-setcartItems(JSON.parse(localStorage.getItem("cartItems")))
-},[cartItems])
 
 
   return (
@@ -58,7 +60,7 @@ setcartItems(JSON.parse(localStorage.getItem("cartItems")))
 
           <Center ref={btnRef} color="#000000" onClick={onOpen} position="relative">
             <BsFillCartFill size={"2rem"} />
-            <span style={{position:"absolute", top:"-.5rem", right:"-.5rem" ,width:"25px",height:"25px",borderRadius:"50%",backgroundColor:"#000000",color:"#fff", display:"flex",justifyContent:"center", alignItems:"center", display: cartItems.length === 0 ? 'none' : 'flex'}}>{cartItems.length}</span>
+            <span style={{position:"absolute", top:"-.5rem", right:"-.5rem" ,width:"25px",height:"25px",borderRadius:"50%",backgroundColor:"#000000",color:"#fff", display:"flex",justifyContent:"center", alignItems:"center", display: cartItems?.length === 0 ? 'none' : 'flex'}}>{cartItems?.length}</span>
           </Center>
 
           <Drawer
@@ -71,16 +73,16 @@ setcartItems(JSON.parse(localStorage.getItem("cartItems")))
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader color="red"  >Cart Items <span  > {cartItems.length} </span> </DrawerHeader>
+              <DrawerHeader color="red"  >Cart Items <span  > {cartItems?.length} </span> </DrawerHeader>
 
               <DrawerBody>
                 {cartItems?.length === 0 ? (
                   <h1>Your cart is empty.</h1>
                 ) : (
                   <ul>
-                   { cartItems.map((item) => (
+                   {cartItems?.map((item) => (
                         
-                       <CartCard product={item} setcartItems={setcartItems}/>
+                       <CartCard product={item} />
                   
             
                     ))}
@@ -89,6 +91,10 @@ setcartItems(JSON.parse(localStorage.getItem("cartItems")))
               </DrawerBody>
 
               <DrawerFooter>
+                <Text>
+                  Total Price : $ {totalPrice.toFixed(0)}
+                </Text>
+              
                 <Button
                   colorScheme="red"
                   mr={2}
