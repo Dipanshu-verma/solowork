@@ -1,12 +1,13 @@
-import { Box, Image, border } from "@chakra-ui/react";
+import { Box,  Image, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
-import RatingStar from "./RatingStar";
+ 
 import { useDispatch, useSelector } from "react-redux";
 import { setTotalPrice, setcartItems } from "../../Redux/actions/cartaction";
-const CartCard = ({product}) => {
+import RatingStar from "./RatingStar";
+const CartCard = ({product,CartScreen}) => {
   const [quant, setQuant] = useState(
     localStorage.getItem(`quan_${product.id}`) || 1
   );
@@ -32,17 +33,22 @@ const CartCard = ({product}) => {
    
     setQuant(quan);
     localStorage.setItem(`quan_${product.id}`, quan);
-    dispatch(setTotalPrice(totalPrice+product.price))
+    dispatch(setTotalPrice(totalPrice+ Math.ceil(product.price)))
+    
   }
 
   
 
 
   function handleDelete(){
-let items = JSON.parse(localStorage.getItem("cartItems"))
- 
+    let items = JSON.parse(localStorage.getItem("cartItems"))
     let index = items.findIndex(element => element.id === product.id);
      items.splice(index,1)
+     let quan = localStorage.getItem(`quan_${product.id}`) || 1;
+     quan = Number(quan);
+     
+     dispatch(setTotalPrice(totalPrice-(product.price*quan)))
+     localStorage.removeItem(`quan_${product.id}`)
      dispatch(setcartItems(items))
      localStorage.setItem("cartItems",JSON.stringify(items));
  
@@ -53,13 +59,13 @@ let items = JSON.parse(localStorage.getItem("cartItems"))
     <Box
       display="flex"
       borderBottom="1px solid gray"
-      w="100%"
-      alignItems="center"
-      gap=".5rem"
+      
+     
+      gap="1rem"
       padding=".5rem"
       mb=".5rem"
     >
-      <Box w="40%" height="8rem">
+      <Box w="40%"  >
         <Image src={product.image} w="100%" height="100%" objectFit="contain" />
       </Box>
 
@@ -88,8 +94,20 @@ let items = JSON.parse(localStorage.getItem("cartItems"))
             Price : ${(quant * product.price).toFixed(0)}
           </h3>
         </Box>
-
-        <Box display="flex" alignItems="center" gap=".5rem">
+          {
+            CartScreen && <>
+              <Box display="flex" alignItems={"center"} gap={"2rem"}>
+                <RatingStar rate={product.rating.rate} /> 
+                <Text>
+                  {product.rating.count} reviews
+                </Text>
+              </Box>
+              <Text>
+                Description : {product.description}
+              </Text>
+            </>
+          }
+        <Box display="flex" alignItems="center"  gap=".5rem">
           <FaMinus onClick={handleminus} />
           <span
             style={{

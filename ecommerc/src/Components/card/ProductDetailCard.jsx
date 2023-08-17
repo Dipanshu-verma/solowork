@@ -1,9 +1,12 @@
-import { Box, Button, Card, CardBody, CardFooter, Divider, HStack, Heading, Image, Stack, Text, VStack } from '@chakra-ui/react'
+import { Box, Button,   HStack, Heading, Image, Stack, Text,  } from '@chakra-ui/react'
 import React from 'react'
 import RatingStar from './RatingStar'
+import { useDispatch, useSelector } from 'react-redux';
+import { setTotalPrice, setcartItems } from '../../Redux/actions/cartaction';
 
 const ProductDetailCard = ({product}) => {
-
+  const dispatch= useDispatch();
+  const{totalPrice} =  useSelector(state=>state.cart);
   function handleAddToCart(){
     let cartItems   = JSON.parse(localStorage.getItem("cartItems")) || [];
     let bool  =  false;
@@ -15,6 +18,9 @@ const ProductDetailCard = ({product}) => {
      if(!bool){
       cartItems.push(product);
       localStorage.setItem("cartItems",JSON.stringify(cartItems));
+      dispatch(setcartItems(cartItems))
+       
+      dispatch(setTotalPrice(totalPrice+product.price));
      }
    
 

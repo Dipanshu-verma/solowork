@@ -12,26 +12,38 @@ import {
   Flex,
   Input,
   Text,
+  border,
   useDisclosure,
   useTheme,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { AiOutlineLogin } from "react-icons/ai";
 import { BsFillCartFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartCard from "../card/cartCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setTotalPrice, setcartItems } from "../../Redux/actions/cartaction";
+import { color } from "framer-motion";
+ 
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-//  const[cartItems,setcartItems] =  useState([])
 
-const{cartItems,totalPrice} =  useSelector(state=>state.cart);
-   
+ 
  
 
 
+const{cartItems,totalPrice} =  useSelector(state=>state.cart);
+ 
+// let items =  JSON.parse(localStorage.getItem("cartItems"))||[]
+ 
+ console.log(cartItems,totalPrice);
+const nagivate =  useNavigate()
+function handleviewCart(){
+ 
+  nagivate('/cartpage')
+}
   return (
     <div style={{ position: "fixed", width: "100%", top: "0", zIndex: "100" }}>
       <Flex
@@ -90,9 +102,11 @@ const{cartItems,totalPrice} =  useSelector(state=>state.cart);
                 )}
               </DrawerBody>
 
-              <DrawerFooter>
-                <Text>
-                  Total Price : $ {totalPrice.toFixed(0)}
+              <DrawerFooter flexDirection="column" >
+              <Button border="2px" width="97%" borderRadius="5px" bg="#000000" color="#fff" mb="1rem" _hover={{ color: "black", bg: "#fff", boxShadow: "0 0 10px black" }} onClick={handleviewCart}>View cart</Button>
+              <Box display="flex" justifyContent="space-between" width="100%" alignItems="center">
+                <Text fontSize="20px" fontWeight="600">
+                  Total Price : $ {totalPrice.toFixed(1)}
                 </Text>
               
                 <Button
@@ -103,6 +117,7 @@ const{cartItems,totalPrice} =  useSelector(state=>state.cart);
                 >
                   PROCEED
                 </Button>
+                </Box>
               </DrawerFooter>
             </DrawerContent>
           </Drawer>

@@ -11,33 +11,36 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { setcartItems } from "../../Redux/actions/cartaction";
+import { setTotalPrice, setcartItems } from "../../Redux/actions/cartaction";
 
 const CardProd = ({ product, productscreen }) => {
   const navigate = useNavigate();
-
+  const dispatch= useDispatch();
+  const{totalPrice} =  useSelector(state=>state.cart);
   function handleProductDetails() {
     navigate(`/productdetail/${product.id}`);
   }
-const dispatch =  useDispatch();
+ 
 
   function handleAddToCart() {
+    
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     let bool = false;
-    cartItems?.map((elm) => {
-      if (elm.id == product.id) {
+    cartItems?.forEach((elm) => {
+      if (elm.id === product.id) {
         bool = true;
       }
     });
     if (!bool) {
       
       cartItems.push(product);
-    
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       dispatch(setcartItems(cartItems))
+       
+      dispatch(setTotalPrice(totalPrice+product.price));
     }
   }
   return (

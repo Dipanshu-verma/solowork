@@ -5,6 +5,7 @@ import Home from './Components/Screens/homescreen/Home';
 import { Route, Routes } from 'react-router-dom';
 import ProductDetails from './Components/Screens/ProductDetails';
 import ProductScreen from './Components/Screens/productscreen/ProductScreen';
+import CartScreen from './Components/Screens/cartscreen/CartScreen';
 
  function Layout(){
   return(
@@ -26,6 +27,7 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='/productdetail/:id' element={<ProductDetails/>}/>
       <Route path='/Products' element={<ProductScreen/>} />
+      <Route path='/cartpage' element={<CartScreen/>} />
       <Route/>
       <Route/>
     </Routes>

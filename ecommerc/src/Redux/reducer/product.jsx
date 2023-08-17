@@ -18,19 +18,21 @@ export const product  = (state={loading:false,products:[],error:null},action) =>
 
 let total  =  0;
 let items =  JSON.parse(localStorage.getItem("cartItems"))||[]
-items?.map((elm)=>{
-    let quan  =  localStorage.getItem(`quan_${elm.id}`)
+items?.forEach((elm)=>{
+    let quan  =  localStorage.getItem(`quan_${elm.id}`)||1
     total += elm.price * Number(quan)
 })
-
+ 
+//  total= total.toFixed(0);
 
 export const cart  = (state={cartItems:JSON.parse(localStorage.getItem("cartItems"))||[],totalPrice:total},action) =>{
+     
     const{type,payload} = action
      
    switch(type){
       
        case ADD_CART_SUCCESS:return{
-          ...state,cartItems:payload, 
+          ...state,cartItems:[...payload], 
        }
        case TOTAL_PRICE_UPDATE:return{
         ...state,totalPrice:payload
