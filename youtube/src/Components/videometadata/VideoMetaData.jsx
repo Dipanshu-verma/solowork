@@ -34,7 +34,7 @@ dispatch(channelSubscriptionStatus(channelId))
                     <MdThumbUp size={23}/>
                     {numeral(likeCount).format("0.a")}
                 </span>
-                <span className='mr-3'>
+                <span  style={{marginLeft:"1rem"}}>
                     <MdThumbDown size={23}/>
                    { numeral(dislikeCount).format("0.a")}
                 </span>

@@ -33,7 +33,7 @@ console.log("channel",videos);
     {
       numeral(statistics?.subscriberCount).format('0.a')}
     
-       Subscribers
+      &nbsp; Subscribers
     
      </span>
     </div>

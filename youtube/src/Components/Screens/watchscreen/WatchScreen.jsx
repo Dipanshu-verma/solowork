@@ -25,8 +25,8 @@ const WatchScreen = () => {
       <Col Lg={8}>
         <div className="watchScreen__player">
           <iframe
-            width="560"
-            height="315"
+            width="100%"
+            height="100%"
             src={`https://www.youtube.com/embed/${id}`}
             title={video?.snippet?.title}
             frameborder="0"
