@@ -14,8 +14,6 @@ dispatch(getProduct())
  
 },[dispatch])
 
-
-
  function Handlefilter(e){
  
     if(e.target.value==='All'){
@@ -27,15 +25,13 @@ dispatch(getProduct())
     
  }
 
-
  let {products,loading} =  useSelector(state=>state.products);
  
- 
+
  function handleSortPrice(e){
   dispatch(getSortProductsbyPrice(e.target.value))
   
  }
-
  function handleSortrating(e){
   dispatch(getSortProductsbyRating(e.target.value))
  }

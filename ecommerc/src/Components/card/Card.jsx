@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
 import { setTotalPrice, setcartItems } from "../../Redux/actions/cartaction";
+import { handleAddToCart } from "./comoncard";
 
 const CardProd = ({ product, productscreen }) => {
   const navigate = useNavigate();
@@ -24,25 +25,6 @@ const CardProd = ({ product, productscreen }) => {
     navigate(`/productdetail/${product.id}`);
   }
  
-
-  function handleAddToCart() {
-    
-    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    let bool = false;
-    cartItems?.forEach((elm) => {
-      if (elm.id === product.id) {
-        bool = true;
-      }
-    });
-    if (!bool) {
-      
-      cartItems.push(product);
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      dispatch(setcartItems(cartItems))
-       
-      dispatch(setTotalPrice(totalPrice+product.price));
-    }
-  }
   return (
     <Card maxW="sm" boxShadow="0 0 5px black" align="center">
       <CardBody onClick={handleProductDetails}>
@@ -68,7 +50,7 @@ const CardProd = ({ product, productscreen }) => {
             bg="black"
             border={"2px solid black"}
             _hover={{ color: "black", bg: "#fff", boxShadow: "0 0 10px black" }}
-            onClick={handleAddToCart}
+            onClick={()=>handleAddToCart(product,dispatch,totalPrice)}
           >
             Add to Cart
           </Button>

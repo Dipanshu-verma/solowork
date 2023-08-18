@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import ProductDetails from './Components/Screens/ProductDetails';
 import ProductScreen from './Components/Screens/productscreen/ProductScreen';
 import CartScreen from './Components/Screens/cartscreen/CartScreen';
-
+import footer  from './footerpart.png'
  function Layout(){
   return(
     <>
@@ -31,6 +31,7 @@ function App() {
       <Route/>
       <Route/>
     </Routes>
+    <img src={footer} alt="" />
    
     {/* <div className="App">
     

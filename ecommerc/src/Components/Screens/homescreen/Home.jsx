@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProduct } from '../../../Redux/actions/productaction'
 import { Box, Grid, GridItem, Skeleton } from '@chakra-ui/react'
 import CardProd from '../../card/Card'
+import "./home.scss"
 const Home = () => {
 const dispatch =  useDispatch();
 useEffect(()=>{
@@ -14,8 +15,8 @@ const {products,loading} = useSelector(state=>state.products)
  console.log(products);
   return (
     <div>
-       <img src={benner} alt="" style={{height:"90vh",width:"100%",marginTop:"13vh"}}/>
-       <h1 style={{textAlign:"center",fontSize:'35px',fontWeight:'700'}}>Letest Products</h1>
+       <img src={benner} alt="" className='benner_img'/>
+       <h1>Letest Products</h1>
        <Grid templateColumns='repeat(4, 1fr)' gap={6} p="2rem" >
         {
            !loading? 

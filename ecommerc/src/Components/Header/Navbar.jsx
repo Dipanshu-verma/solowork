@@ -22,8 +22,7 @@ import { BsFillCartFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import CartCard from "../card/cartCard";
 import { useDispatch, useSelector } from "react-redux";
-import { setTotalPrice, setcartItems } from "../../Redux/actions/cartaction";
-import { color } from "framer-motion";
+ 
  
 
 const Navbar = () => {
@@ -36,7 +35,7 @@ const Navbar = () => {
 
 const{cartItems,totalPrice} =  useSelector(state=>state.cart);
  
-// let items =  JSON.parse(localStorage.getItem("cartItems"))||[]
+ 
  
  console.log(cartItems,totalPrice);
 const nagivate =  useNavigate()
@@ -71,8 +70,8 @@ function handleviewCart(){
           <Button leftIcon={<AiOutlineLogin />}>Login</Button>
 
           <Center ref={btnRef} color="#000000" onClick={onOpen} position="relative">
-            <BsFillCartFill size={"2rem"} />
-            <span style={{position:"absolute", top:"-.5rem", right:"-.5rem" ,width:"25px",height:"25px",borderRadius:"50%",backgroundColor:"#000000",color:"#fff", display:"flex",justifyContent:"center", alignItems:"center", display: cartItems?.length === 0 ? 'none' : 'flex'}}>{cartItems?.length}</span>
+            <BsFillCartFill size={"2rem"}  />
+            <span style={{position:"absolute", top:"-.5rem", right:"-.5rem" ,width:"25px",height:"25px",borderRadius:"50%",backgroundColor:"#fff",color:"#000000", display:"flex",justifyContent:"center", alignItems:"center", display: cartItems?.length === 0 ? 'none' : 'flex',fontWeight:"600"}} >{cartItems?.length}</span>
           </Center>
 
           <Drawer
