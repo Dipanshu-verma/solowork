@@ -1,5 +1,5 @@
 ## React-Todo-App-with-Pagination-and-mock-server
-netlify : https://react-todoapp-bydipanshu.netlify.app/
+netlify : https://64e02ba5a489b6110c34cea3--imaginative-fox-cac917.netlify.app/
 #### Problem Statement
 
 Create the following application with the boilerplate code provided.

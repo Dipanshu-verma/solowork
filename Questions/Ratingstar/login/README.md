@@ -1,56 +1,5 @@
-## React-rating-with-login-logout
-
-## Maximum Marks - 13
-
-- The Submission should not contain spaces, for example /rct-101 folder/eval will not work
-- Do not push node_modules and package_lock.json to github
-- Rename the boilerplate folder name(there shouldn't be any spaces) once downloaded.
-  follow this naming convention <block>-<sprint>-<eval> for e.g., b22-s1-c1 should be the folder name
-
-## Rubrics
-
-```
-✅ able to submit the app - 1 mark ( minimum score )
-✅ User should be able to login with correct username and password - 1 marks
-✅ User should not be able to login with wrong credentials and need to get error message - 1 marks
-✅ Onclicking on logout the user should see only login component - 2 marks
-✅ Check initial rating and color of active starts is yellow is as per the data - 2 marks
-✅ Trash icon should be working correctly and DOM is updating in realtime  - 2 marks
-✅ when we are clicking on the star check whether the rating is getting changed and appropriate comments(title) can be seen or not and the title is in the respective color - 4 marks
-```
-
-## Some Rules to follow:-
-
-- Before writing a single line of code please read the problem statement very carefully.
-- Don't change the already given ids or classes.
-- If you don't follow these rules you might not get any marks even if you do everything correctly.
-
-#### Getting Started
-
-#### Installation
-
-- Use node version(LTS) should be `v16.16.0`
-- Don't change/override package.json
-- Unzip the zip file, and COPY the contents in your Masai Repo Folder.
-- Run the following commands
-  - `npm install --engine-strict`
-  - `npm start`
-
-```
-├── src
-|  ├── App.js
-|  ├── Components
-|  |  ├── dashboard
-|  |  |  ├── Comment.jsx
-|  |  |  ├── CommentList.jsx
-|  |  |  ├── Dashboard.jsx
-|  |  |  ├── Star.jsx
-|  |  |  └── StarRating.jsx
-|  |  └── login
-|  |     └── Login.jsx
-|  ├── index.js
-|  └── styles.css
-```
+username =  admin
+password  =  1234
 
 #### Problem Statement
 
@@ -126,9 +75,4 @@ for start icons and trash icons, you can import from react-icons(https://react-i
 - Do Not Remove `data-testid="xxxx"` from anywhere, these are used by testing tools to test your code, and removal of this will lead to a low score.
 - Also make sure to cross-check all the spellings and Cases of Texts.
 
-#### General guidelines
-
-- The system on cp.masaischool.com may take between 1-20 minutes for responding,
-- so we request you to read the problem carefully and debug it before itself
-- we also request you not just submit it last minute
-- try to keep one submission at a time
+ 
