@@ -7,6 +7,7 @@ import ProductDetails from './Components/Screens/ProductDetails';
 import ProductScreen from './Components/Screens/productscreen/ProductScreen';
 import CartScreen from './Components/Screens/cartscreen/CartScreen';
 import footer  from './footerpart.png'
+import Login from './Components/login/Login';
  function Layout(){
   return(
     <>
@@ -22,7 +23,8 @@ import footer  from './footerpart.png'
 function App() {
   return (
     <>
-     <Navbar/>
+    <Login/>
+     {/* <Navbar/>
      <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/productdetail/:id' element={<ProductDetails/>}/>
@@ -30,8 +32,8 @@ function App() {
       <Route path='/cartpage' element={<CartScreen/>} />
       <Route/>
       <Route/>
-    </Routes>
-    <img src={footer} alt="" />
+    </Routes> */}
+    {/* <img src={footer} alt="" /> */}
    
     {/* <div className="App">
     
