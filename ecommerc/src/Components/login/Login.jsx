@@ -12,6 +12,7 @@ import React, { useRef, useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import "./login.scss";
+import axios from 'axios'
 const Login = () => {
   const [show, setShow] = useState(false);
   const [login, setlogin] = useState(true);
@@ -34,7 +35,7 @@ const Login = () => {
     setpasswordvalue("");
   }
 
-  function handleform(e) {
+  async function handleform(e) {
     e.preventDefault();
     if (!validatePassword(passwordvalue)) {
       setpass(false);
@@ -42,6 +43,43 @@ const Login = () => {
     }
     setpass(true);
     console.log(emailvalue, passwordvalue);
+
+      
+      if(!login){
+        try{
+          const user = {name:namevalue,email:emailvalue,password:passwordvalue} 
+          const response = await axios.post("/register", user);
+
+              if(response.status ===400){
+                // User already exists. 
+
+              }else{
+
+                // user registred successfully.
+                
+              }
+
+        }catch(err){
+          console.error('Registration failed:', err.message);
+        }
+      
+      }else{
+        try{
+          const user = {email:emailvalue,password:passwordvalue} 
+          const response = await axios.post("/login", user);
+
+              if(response.status ===401){
+                // console.log(response.data.message);
+                // Invalid credential.
+              }else{
+                // Login successful.
+              }
+
+        }catch(err){
+          console.error('Registration failed:', err.message);
+        }
+      
+      }
 
     setemailvalue("");
     setpasswordvalue("");
@@ -73,6 +111,7 @@ const Login = () => {
               <FormLabel>Name</FormLabel>
               <Input
                 type="text"
+                placeholder="Name"
                 mb="1.2rem"
                 value={namevalue}
                 onChange={(e) => setnamevalue(e.target.value)}
@@ -84,6 +123,7 @@ const Login = () => {
           <FormLabel>Email</FormLabel>
           <Input
             type="email"
+            placeholder="Email"
             mb="1.2rem"
             value={emailvalue}
             onChange={(e) => setemailvalue(e.target.value)}
@@ -94,6 +134,7 @@ const Login = () => {
           <Input
             type={show ? "text" : "password"}
             mb="1.2rem"
+            placeholder="Password"
             value={passwordvalue}
             onChange={(e) => setpasswordvalue(e.target.value)}
           />
