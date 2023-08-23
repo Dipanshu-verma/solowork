@@ -56,14 +56,16 @@
 
 const express = require("express");
 const fs = require("fs");
+const cors = require('cors');
+
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 function readusers() {
   try {
-    const data = fs.readFileSync("./db.json", "utf-8");
+    const data = fs.readFileSync("./src/db.json", "utf-8");
     return JSON.parse(data);
   } catch (err) {
     return { users: [] };
@@ -71,7 +73,7 @@ function readusers() {
 }
 
 function writeusers(db) {
-  fs.writeFileSync("./db.json", JSON.stringify(db), "utf-8");
+  fs.writeFileSync("./src/db.json", JSON.stringify(db), "utf-8");
 }
 function randomid(users) {
   const maxid = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
@@ -80,7 +82,7 @@ function randomid(users) {
 
 app.post("/register", (req, res) => {
   const { name, email, password } = req.body;
-
+ 
   const db = readusers();
 
   if (db.users.find((user) => user.email === email)) {

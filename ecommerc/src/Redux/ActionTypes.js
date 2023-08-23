@@ -3,3 +3,10 @@ export const PRODUCT_FAIL  =  "PRODUCT_FAIL";
 export const PRODUCT_SUCCESS = "PRODUCT_SUCCESS"
 export const ADD_CART_SUCCESS=  "ADD_CART_SUCCESS"
 export const TOTAL_PRICE_UPDATE = "TOTAL_PRICE"
+
+
+
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_PROFILE = "LOGIN_PROFILE";

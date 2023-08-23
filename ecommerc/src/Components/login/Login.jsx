@@ -7,12 +7,17 @@ import {
   Image,
   Input,
   Text,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import "./login.scss";
 import axios from 'axios'
+ 
+import { useDispatch, useSelector } from "react-redux";
+import { LoginWithgoogle } from "../../Redux/actions/authaction";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [show, setShow] = useState(false);
   const [login, setlogin] = useState(true);
@@ -27,8 +32,13 @@ const Login = () => {
     
     setShow(!show);
   }
-
+const navigate =  useNavigate()
   function handlelogin() {
+    if(login){
+      navigate("/register")
+    }else{
+      navigate("/login")
+    }
     setlogin(!login);
     setnamevalue("");
     setemailvalue("");
@@ -42,44 +52,45 @@ const Login = () => {
       return;
     }
     setpass(true);
-    console.log(emailvalue, passwordvalue);
+   
 
       
-      if(!login){
-        try{
-          const user = {name:namevalue,email:emailvalue,password:passwordvalue} 
-          const response = await axios.post("/register", user);
+      // if(!login){
+      //   try{
+      //     const user = {name:namevalue,email:emailvalue,password:passwordvalue} 
+      //     const response = await axios.post("/register", user);
 
-              if(response.status ===400){
-                // User already exists. 
+      //         if(response.ok){
+      
+      //           console.log(response.message); 
 
-              }else{
+      //         }else{
 
-                // user registred successfully.
+      //           // user registred successfully.
                 
-              }
+      //         }
 
-        }catch(err){
-          console.error('Registration failed:', err.message);
-        }
+      //   }catch(err){
+      //     console.log('Registration failed:', err.message);
+      //   }
       
-      }else{
-        try{
-          const user = {email:emailvalue,password:passwordvalue} 
-          const response = await axios.post("/login", user);
+      // }else{
+      //   try{
+      //     const user = {email:emailvalue,password:passwordvalue} 
+      //     const response = await axios.post("/login", user);
 
-              if(response.status ===401){
-                // console.log(response.data.message);
-                // Invalid credential.
-              }else{
-                // Login successful.
-              }
+      //         if(response.status ===401){
+      //           // console.log(response.data.message);
+      //           // Invalid credential.
+      //         }else{
+      //           // Login successful.
+      //         }
 
-        }catch(err){
-          console.error('Registration failed:', err.message);
-        }
+      //   }catch(err){
+      //     console.error('Registration failed:', err.message);
+      //   }
       
-      }
+      // }
 
     setemailvalue("");
     setpasswordvalue("");
@@ -87,6 +98,17 @@ const Login = () => {
   function validatePassword(password) {
      
     return /\d/.test(password) && /[!@#$%^&*]/.test(password);
+  }
+  const {accesstoken} =  useSelector(state=> state.auth);
+ 
+
+const dispatch =  useDispatch()
+  function handleLoginWithgoogle(){
+    
+dispatch(LoginWithgoogle())
+if(accesstoken){
+  navigate('/')
+}
   }
   return (
     <Box w="md" className="container">
@@ -98,7 +120,7 @@ const Login = () => {
         <Text>
           {" "}
           {login ? "Don't have an account?" : "Already have an account? "}
-          <a href="#" onClick={handlelogin} className="ancor">
+          <a onClick={handlelogin} className="ancor">
             {login ? "Sign up" : "Log in"}
           </a>
         </Text>
@@ -162,7 +184,7 @@ const Login = () => {
           {!login ? "Create Account" : "Sign in"}{" "}
         </Button>
 
-        <Box display="flex" gap="1rem" mt="2rem" py=".5rem" borderRadius="3px" border="1px solid gray" justifyContent="center">
+        <Box display="flex" gap="1rem" mt="2rem" py=".5rem" borderRadius="3px" border="1px solid gray" justifyContent="center" onClick={handleLoginWithgoogle}>
           <Text>Continue with </Text>
 
           <Image

@@ -34,15 +34,19 @@ const Navbar = () => {
 
 
 const{cartItems,totalPrice} =  useSelector(state=>state.cart);
- 
- 
- 
- console.log(cartItems,totalPrice);
+const {accesstoken,profile} =  useSelector(state=> state.auth);
+//  const name  = JSON.parse(localStorage.getItem("user_profile")).name
+ console.log(profile);
+  console.log(profile.name);
 const nagivate =  useNavigate()
 function handleviewCart(){
  
   nagivate('/cartpage')
 }
+ function handleLoginUser(){
+  nagivate('/login')
+ }
+
   return (
     <div style={{ position: "fixed", width: "100%", top: "0", zIndex: "100" }}>
       <Flex
@@ -67,8 +71,10 @@ function handleviewCart(){
           <Link to='/' >Home</Link>
           <Link to='/Products' >Products</Link>
           <Link>About</Link>
+          {
+            accesstoken?<Text>{profile.name}</Text>:<Button onClick={handleLoginUser} leftIcon={<AiOutlineLogin />}>Login</Button>
+          }
           
-          <Button leftIcon={<AiOutlineLogin />}>Login</Button>
 
           <Center ref={btnRef} color="#000000" onClick={onOpen} position="relative">
             <BsFillCartFill size={"2rem"}  />

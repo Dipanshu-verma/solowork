@@ -23,21 +23,23 @@ import Login from './Components/login/Login';
 function App() {
   return (
     <>
-    <Login/>
-     {/* <Navbar/>
+    
+     <Navbar/>
      <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path='/login' element={<Login/>} />
+      <Route path='/register' element={<Login/>} />
       <Route path='/productdetail/:id' element={<ProductDetails/>}/>
       <Route path='/Products' element={<ProductScreen/>} />
       <Route path='/cartpage' element={<CartScreen/>} />
       <Route/>
       <Route/>
-    </Routes> */}
-    {/* <img src={footer} alt="" /> */}
+    </Routes>  
+    <img src={footer} alt="" />  
    
     {/* <div className="App">
     
-    </div> */}
+    </div>*/}
     </>
   );
 }
