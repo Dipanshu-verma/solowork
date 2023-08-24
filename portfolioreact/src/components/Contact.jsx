@@ -18,7 +18,7 @@ const Contact = () => {
           <a href="https://www.linkedin.com/in/dipanshu-verma-3875a7246/" target="_blank"><i className='bx bxl-linkedin-square' > <FaLinkedin /></i></a>
           <a href="https://github.com/Dipanshu-verma" target="_blank"><i className='bx bxl-github'> <FaGithub /></i></a>
           <a href="https://wa.me/7414824859" target="_blank"><i className='bx bxl-whatsapp' > <FaWhatsapp/></i></a>
-          <a href="https://twitter.com/PatelSweta46105" target="_blank"><i className='bx bxl-twitter'><FaTwitter/> </i></a>
+          <a href="#" target="_blank"><i className='bx bxl-twitter'><FaTwitter/> </i></a>
         </div>
       </div>
       <div className="contact-form">

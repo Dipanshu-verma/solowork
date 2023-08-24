@@ -347,7 +347,7 @@ font-size: 40px;
   padding: 50px 7%;
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  gap: 40px;
+  gap: 20px;
 
 }
 .heading{
@@ -366,7 +366,7 @@ font-size: 40px;
 .project{
   position: relative;
   width: 100%;
-  height: 34vh;
+  height: 37vh;
   border-radius: 15px ;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

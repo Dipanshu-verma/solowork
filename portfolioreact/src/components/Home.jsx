@@ -29,7 +29,7 @@ const Home = () => {
           <a href="https://www.linkedin.com/in/dipanshu-verma-3875a7246/" target="_blank" style={{ '--i': 7 }}><FaLinkedin /></a>
           <a href="https://github.com/Dipanshu-verma" target="_blank" style={{ '--i': 8 }}><FaGithub /></a>
           <a href="mailto:vermadipanshu444@gmail.com" style={{ '--i': 9 }}><FaEnvelope /></a>
-          <a href="https://www.instagram.com/swetaaapatel/" target="_blank" style={{ '--i': 10 }}><FaInstagram /></a>
+          <a href="https://www.instagram.com/_dhruv_its/" target="_blank" style={{ '--i': 10 }}><FaInstagram /></a>
           <a href="https://wa.me/7414824859" target="_blank" style={{ '--i': 11 }}><FaWhatsapp /></a>
         </div>
         <a href="#about" className="btn-box">More About Me</a>

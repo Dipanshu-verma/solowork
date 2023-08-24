@@ -28,7 +28,7 @@ const Header = () => {
       <nav className="navbar" onClick={handleNavbarClick}>
         <a href="#home" style={{ '--i': 1 }}>Home</a>
         <a href="#about" style={{ '--i': 2 }}>About</a>
-        <a href="#skill" style={{ '--i': 3 }}>Skill</a>
+        <a href="#skill" style={{ '--i': 3 }}>Skills</a>
         <a href="#project" style={{ '--i': 4 }}>Projects</a>
         <a href="#Contact" style={{ '--i': 5 }}>Contact</a>
         <a href={require("./../Assets/Dipanshu verma.pdf")} target="_blank" style={{ '--i': 6 }}>Resume</a>

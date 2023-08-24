@@ -1,30 +1,4 @@
-## React-Todo-App-with-Pagination-and-mock-server
-netlify : https://64e02ba5a489b6110c34cea3--imaginative-fox-cac917.netlify.app/
-#### Problem Statement
-
-Create the following application with the boilerplate code provided.
-
- 
- 
-
-## Installation
-
-- Use node version(LTS) should be `v16.16.0`
-- Don't change/override package.json
-- please make sure you do not push package-lock.json
-
-- Download and unzip the boilerplate file and then copy the "**contents**" of the unzipped file in the Masai Folder.
-- Navigate to the Masai Folder, in VS Code.
-- Run the following commands inside,
-  - `npm install --engine-strict`
-  - `npm start`
-  - `npm run server` -> to start the json-server
-- **_Note_**:
-
-1. Make sure that the json-server is up and running at port `8080`
-2. Create a .env file. Include `REACT_APP_JSON_SERVER_PORT=8080` in it
-3. restart the react server
-4. Use `http://localhost:${process.env.REACT_APP_JSON_SERVER_PORT}` as the json-server url where ever you use `http://localhost:8080`
+ netlify link :  https://dashing-todo-app-ddedea.netlify.app/
 
   
 ## Problem Statement
