@@ -8,6 +8,7 @@ import {
   Input,
   Text,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
@@ -28,6 +29,8 @@ const Login = () => {
   const [passwordvalue, setpasswordvalue] = useState("");
 
   const formref = useRef();
+  const toast = useToast({
+    position: 'top'})
   function passwordhandle() {
     
     setShow(!show);
@@ -47,6 +50,7 @@ const navigate =  useNavigate()
 
   async function handleform(e) {
     e.preventDefault();
+   
     if (!validatePassword(passwordvalue)) {
       setpass(false);
       return;
@@ -184,7 +188,7 @@ if(accesstoken){
           {!login ? "Create Account" : "Sign in"}{" "}
         </Button>
 
-        <Box display="flex" gap="1rem" mt="2rem" py=".5rem" borderRadius="3px" border="1px solid gray" justifyContent="center" onClick={handleLoginWithgoogle}>
+        <Box display="flex" gap="1rem" mt="2rem" py=".5rem" borderRadius="3px" backgroundColor="rgb(227, 227, 227)" border="1px solid gray" justifyContent="center" onClick={handleLoginWithgoogle}>
           <Text>Continue with </Text>
 
           <Image

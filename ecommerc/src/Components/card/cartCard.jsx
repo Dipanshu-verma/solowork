@@ -1,4 +1,4 @@
-import { Box, Image, Text } from "@chakra-ui/react";
+import { Box, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure,Lorem, Button } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { FaMinus } from "react-icons/fa6";
@@ -12,6 +12,7 @@ const CartCard = ({ product, CartScreen }) => {
   const [quant, setQuant] = useState(
     localStorage.getItem(`quan_${product.id}`) || 1
   );
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const dispatch = useDispatch();
   const { totalPrice } = useSelector((state) => state.cart);
 
@@ -53,6 +54,12 @@ const CartCard = ({ product, CartScreen }) => {
 
   // }
 
+   
+function handdleDelete(){
+
+  handleDelete(product, dispatch, totalPrice)
+  onClose()
+}
   return (
     <Box
       display="flex"
@@ -61,8 +68,8 @@ const CartCard = ({ product, CartScreen }) => {
       padding=".5rem"
       mb=".5rem"
     >
-      <Box w="40%">
-        <Image src={product.image} w="100%" height="100%" objectFit="contain" />
+      <Box w="40%" height= {CartScreen?"27vh":"20vh"} >
+        <Image src={product.image} w="100%" height="100%" />
       </Box>
 
       <Box
@@ -81,10 +88,27 @@ const CartCard = ({ product, CartScreen }) => {
         >
           <p style={{ fontWeight: "700" }}>{product.title}</p>
           <MdDeleteForever
-            onClick={() => handleDelete(product, dispatch, totalPrice)}
+            onClick={onOpen}
             className="deletebtn"
             size={22}
           />
+            <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Confirmation</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+           <Text fontSize="19px" fontWeight="700"> do you really want to delete this item?</Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button  _hover={{background:"red.600"}} backgroundColor="red.500" color="#fff" onClick={handdleDelete}>OK</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
         </Box>
         <Box display="flex" justifyContent="space-between">
           <h3 style={{ fontSize: "16px" }}>
@@ -95,9 +119,9 @@ const CartCard = ({ product, CartScreen }) => {
           <>
             <Box display="flex" alignItems={"center"} gap={"2rem"}>
               <RatingStar rate={product.rating.rate} />
-              <Text>{product.rating.count} reviews</Text>
+              
             </Box>
-            <Text>Description : {product.description}</Text>
+             
           </>
         )}
         <Box display="flex" alignItems="center" gap=".5rem">

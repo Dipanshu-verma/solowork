@@ -52,16 +52,16 @@ function handlecheckout(){
         </Box>
         <Box fontSize="17px" fontWeight="600" width="90%" m="auto"  mt="1rem">
           <Box justifyContent="space-between" gap="2rem" display="flex">
-            <h1>Price :</h1>
-            <h1>${totalPrice.toFixed(0)}</h1>
+            <p>Price :</p>
+            <p>${totalPrice.toFixed(0)}</p>
           </Box>
           <Box justifyContent="space-between" gap="2rem" display="flex">
-            <h1>Discount :</h1>
-            <h1>${discount}</h1>
+            <p>Discount :</p>
+            <p>${discount}</p>
           </Box>
           <Box justifyContent="space-between" gap="2rem" display="flex">
-            <h1>Total Amount :</h1>
-            <h1>${discount===0?totalPrice.toFixed(0):(totalPrice*90/100).toFixed(0)}</h1>
+            <p>Total Amount :</p>
+            <p>${discount===0?totalPrice.toFixed(0):(totalPrice*90/100).toFixed(0)}</p>
           </Box>
         </Box>
         <Button border="2px" ml="68%" borderRadius="5px" bg="#000000" color="#fff" mt="1rem" _hover={{ color: "black", bg: "#fff", boxShadow: "0 0 10px black" }} onClick={handlecheckout}>Checkout</Button>

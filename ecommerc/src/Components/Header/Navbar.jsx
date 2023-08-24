@@ -29,15 +29,9 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
- 
- 
-
-
 const{cartItems,totalPrice} =  useSelector(state=>state.cart);
 const {accesstoken,profile} =  useSelector(state=> state.auth);
-//  const name  = JSON.parse(localStorage.getItem("user_profile")).name
- console.log(profile);
-  console.log(profile.name);
+ 
 const nagivate =  useNavigate()
 function handleviewCart(){
  
