@@ -8,12 +8,12 @@ const dispatch  =  useDispatch();
    function handleTodo(e){
       e.preventDefault()
   dispatch(addNewTodo(todo))
-    console.log(todo);
+  
    }
 
   return (
      <form className='todoForm' onSubmit={handleTodo}>
-        <input type="text" placeholder='Enter your task...'  onChange={(e)=>setTodo(e.target.value)} />
+        <input type="text" placeholder='Enter your task...' value={todo}  onChange={(e)=>setTodo(e.target.value)} />
 
      </form>
   )
