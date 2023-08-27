@@ -8,7 +8,7 @@ const dispatch  =  useDispatch();
    function handleTodo(e){
       e.preventDefault()
   dispatch(addNewTodo(todo))
-  
+  setTodo("")
    }
 
   return (
