@@ -65,7 +65,7 @@ app.use(express.json());
 
 function readusers() {
   try {
-    const data = fs.readFileSync("./src/db.json", "utf-8");
+    const data = fs.readFileSync("./db.json", "utf-8");
     return JSON.parse(data);
   } catch (err) {
     return { users: [] };
@@ -73,10 +73,10 @@ function readusers() {
 }
 
 function writeusers(db) {
-  fs.writeFileSync("./src/db.json", JSON.stringify(db), "utf-8");
+  fs.writeFileSync("./db.json", JSON.stringify(db), "utf-8");
 }
 function randomid(users) {
-  const maxid = users.reduce((max, user) => (user.id > max ? user.id : max), 0);
+  const maxid = users.reduce((max, user) => (user.id > max ? user.id : max),0);
   return maxid + 1;
 }
 
@@ -102,14 +102,20 @@ app.post("/login", (req, res) => {
   const user = db.users.find(
     (user) => user.email === email && user.password === password
   );
+  
   if (!user) {
-    return res.status(401).json({ message:'Invalid credential.' });
+    return res.status(400).json({ message:'Invalid credential.' });
   }
 
    
   res.status(200).json({ message: "Login successful." });
 });
 
-app.listen(3000,() => {
+app.listen(8000,() => {
   console.log("Server is running.");
 });
+
+
+
+
+ 

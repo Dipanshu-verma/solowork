@@ -1,4 +1,4 @@
-import { LOGIN_FAIL, LOGIN_PROFILE, LOGIN_REQUEST, LOGIN_SUCCESS } from "../ActionTypes"
+import { LOGIN_FAIL, LOGIN_PROFILE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_SUCCESS } from "../ActionTypes"
 
 
 const intial ={
@@ -25,6 +25,9 @@ switch(type){
     }
     case LOGIN_PROFILE:return{
         ...preState, loading:false,profile:payload
+    }
+    case LOGOUT_SUCCESS:return{
+       ...preState, accesstoken:null, profile:null,
     }
     default: return preState
 

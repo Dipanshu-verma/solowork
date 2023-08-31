@@ -10,7 +10,7 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import "./login.scss";
@@ -59,42 +59,37 @@ const navigate =  useNavigate()
    
 
       
-      // if(!login){
-      //   try{
-      //     const user = {name:namevalue,email:emailvalue,password:passwordvalue} 
-      //     const response = await axios.post("/register", user);
+      if(!login){
+        try{
+          const user = {name:namevalue,email:emailvalue,password:passwordvalue} 
+          const response = await axios.post("http://localhost:8000/register", user);
 
-      //         if(response.ok){
+
+                console.log(response); 
+                 
+                   navigate("/login")
+                   setlogin(true)
+                 
+                 
+            
+        }catch(err){
+          console.log('Registration failed:', err.response.data.message);
+        }
       
-      //           console.log(response.message); 
+      }else{
+        try{
+          const user = {email:emailvalue,password:passwordvalue} 
+          const response = await axios.post("http://localhost:8000/login", user);
+        
+           localStorage.setItem("user_accesstoken", "indian") 
+            
+          navigate("/")
 
-      //         }else{
-
-      //           // user registred successfully.
-                
-      //         }
-
-      //   }catch(err){
-      //     console.log('Registration failed:', err.message);
-      //   }
+        }catch(err){
+          console.log('Registration failed:', err.response.data.message);
+        }
       
-      // }else{
-      //   try{
-      //     const user = {email:emailvalue,password:passwordvalue} 
-      //     const response = await axios.post("/login", user);
-
-      //         if(response.status ===401){
-      //           // console.log(response.data.message);
-      //           // Invalid credential.
-      //         }else{
-      //           // Login successful.
-      //         }
-
-      //   }catch(err){
-      //     console.error('Registration failed:', err.message);
-      //   }
-      
-      // }
+      }
 
     setemailvalue("");
     setpasswordvalue("");
@@ -106,13 +101,19 @@ const navigate =  useNavigate()
   const {accesstoken} =  useSelector(state=> state.auth);
  
 
+    if(localStorage.getItem("user_accesstoken")){
+
+
+
+      navigate('/')
+    }
+  
+
 const dispatch =  useDispatch()
   function handleLoginWithgoogle(){
     
-dispatch(LoginWithgoogle())
-if(accesstoken){
-  navigate('/')
-}
+    dispatch(LoginWithgoogle())
+ 
   }
   return (
     <Box w="md" className="container">

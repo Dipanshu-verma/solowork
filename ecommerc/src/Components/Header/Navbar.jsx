@@ -10,6 +10,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  Image,
   Input,
   Text,
   border,
@@ -22,6 +23,7 @@ import { BsFillCartFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import CartCard from "../card/cartCard";
 import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../Redux/actions/authaction";
  
  
 
@@ -39,6 +41,13 @@ function handleviewCart(){
 }
  function handleLoginUser(){
   nagivate('/login')
+ }
+const dispatch  = useDispatch()
+ function handleLogout(){
+  localStorage.removeItem("user_accesstoken");
+  localStorage.removeItem("user_profile");
+  dispatch(logoutUser())
+
  }
 
   return (
@@ -66,7 +75,7 @@ function handleviewCart(){
           <Link to='/Products' >Products</Link>
           <Link>About</Link>
           {
-            accesstoken?<Text>{profile.name}</Text>:<Button onClick={handleLoginUser} leftIcon={<AiOutlineLogin />}>Login</Button>
+            (accesstoken || localStorage.getItem("user_accesstoken"))? <Box display="flex" gap=".6rem" alignItems="center" > <Image src={profile?.photoURL} borderRadius="50%" width="35px" height="35px"/> <Button colorScheme="red" onClick={handleLogout}> Logout </Button> </Box>:<Button onClick={handleLoginUser} leftIcon={<AiOutlineLogin />}> Login </Button>
           }
           
 

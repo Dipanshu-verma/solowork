@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app';
 import auth from "../../firebaseauth";
-import { LOGIN_FAIL, LOGIN_PROFILE, LOGIN_REQUEST, LOGIN_SUCCESS } from '../ActionTypes';
+import { LOGIN_FAIL, LOGIN_PROFILE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT_REQUEST, LOGOUT_SUCCESS } from '../ActionTypes';
 
 export const LoginWithgoogle=()=> async (dispatch)=>{
    
@@ -45,6 +45,25 @@ try{
     })
 
 
+}
+
+
+
+}
+
+
+export const logoutUser = ()=> async (dispatch)=>{
+
+try{
+
+dispatch({
+  type:LOGOUT_SUCCESS
+})
+
+
+
+}catch(error){
+  console.log(error);
 }
 
 
