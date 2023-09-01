@@ -35,9 +35,7 @@ const Navbar = () => {
   const { accesstoken, profile } = useSelector((state) => state.auth);
 
   const nagivate = useNavigate();
-  function handleviewCart() {
-    nagivate("/cartpage");
-  }
+ 
   function handleLoginUser() {
     nagivate("/login");
   }
@@ -129,7 +127,10 @@ const Navbar = () => {
 
               <DrawerBody>
                 {cartItems?.length === 0 ? (
-                  <h1>Your cart is empty.</h1>
+                  <Box display="flex" flexDirection="column" alignItems="center">
+                     <Image src="https://media.tenor.com/2UPyt6TKuWgAAAAM/marflrt.gif" alignSelf="center"/>
+                      <h1>Cart is Empty</h1>
+                     </Box>
                 ) : (
                   <ul>
                     {cartItems?.map((item) => (
@@ -152,7 +153,7 @@ const Navbar = () => {
                     bg: "#fff",
                     boxShadow: "0 0 10px black",
                   }}
-                  onClick={handleviewCart}
+                  onClick={()=>{nagivate("/cartpage");onClose()}}
                 >
                   View cart
                 </Button>
@@ -167,10 +168,21 @@ const Navbar = () => {
                   </Text>
 
                   <Button
-                    colorScheme="red"
-                    mr={2}
-                    onClick={onClose}
+                    border="2px"
+                  
+                  borderRadius="5px"
+                  bg="#000000"
+                  color="#fff"
+                  mb="1rem"
+                  _hover={{
+                    color: "black",
+                    bg: "#fff",
+                    boxShadow: "0 0 10px black",
+                  }}
+      
                     fontSize="1rem"
+                    onClick={()=>{nagivate("/cartpage"); onClose()}}
+                     
                   >
                     PROCEED
                   </Button>

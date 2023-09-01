@@ -29,22 +29,8 @@ const[choosed, setchoosed] =  useState(false)
     { size: "Xl", border: "3px solid black" },
     { size: "XXL", border: "3px solid black" },
   ];
-  // function handleAddToCart(){
-  //   let cartItems   = JSON.parse(localStorage.getItem("cartItems")) || [];
-  //   let bool  =  false;
-  //   cartItems?.map((elm)=>{
-  //   if(elm.id == product.id){
-  //     bool=true;
-  //   }
-  //   })
-  //    if(!bool){
-  //     cartItems.push(product);
-  //     localStorage.setItem("cartItems",JSON.stringify(cartItems));
-  //     dispatch(setcartItems(cartItems))
-
-  //     dispatch(setTotalPrice(totalPrice+product.price));
-  //    }
-  //   }
+   
+   
 
   function selectSizethenCart(){
     if(choosed || (product.category !== "men's clothing" &&

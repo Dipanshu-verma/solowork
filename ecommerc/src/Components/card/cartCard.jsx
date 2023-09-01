@@ -16,43 +16,8 @@ const CartCard = ({ product, CartScreen }) => {
   const dispatch = useDispatch();
   const { totalPrice } = useSelector((state) => state.cart);
 
-  // function handleminus() {
-  //   let quan = localStorage.getItem(`quan_${product.id}`) || 1;
-  //   quan = Number(quan);
-  //   if (quan !== 1) {
-  //     quan -= 1;
-
-  //     setQuant(quan);
-  //     localStorage.setItem(`quan_${product.id}`, quan);
-  //     dispatch(setTotalPrice(totalPrice-product.price))
-  //   }
-  // }
-
-  // function handleplus() {
-  //   let quan = localStorage.getItem(`quan_${product.id}`) || 1;
-  //   quan = Number(quan);
-
-  //   quan += 1;
-
-  //   setQuant(quan);
-  //   localStorage.setItem(`quan_${product.id}`, quan);
-  //   dispatch(setTotalPrice(totalPrice+ Math.ceil(product.price)))
-
-  // }
-
-  // function handleDelete(){
-  //   let items = JSON.parse(localStorage.getItem("cartItems"))
-  //   let index = items.findIndex(element => element.id === product.id);
-  //    items.splice(index,1)
-  //    let quan = localStorage.getItem(`quan_${product.id}`) || 1;
-  //    quan = Number(quan);
-
-  //    dispatch(setTotalPrice(totalPrice-(product.price*quan)))
-  //    localStorage.removeItem(`quan_${product.id}`)
-  //    dispatch(setcartItems(items))
-  //    localStorage.setItem("cartItems",JSON.stringify(items));
-
-  // }
+  
+   
 
    
 function handdleDelete(){

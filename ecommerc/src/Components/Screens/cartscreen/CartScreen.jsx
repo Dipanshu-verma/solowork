@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartCard from "../../card/cartCard";
-import { Box, Button, Input, Text } from "@chakra-ui/react";
-
+import { Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
+import { setTotalPrice, setcartItems } from "../../../Redux/actions/cartaction";
+import { useNavigate } from "react-router-dom";
+ 
 const CartScreen = () => {
   const [input, setInput] = useState("");
   const [discount, setdiscount] = useState(0);
   const { cartItems,totalPrice } = useSelector((state) => state.cart);
   const[show,setShow] =  useState(false)
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
 function handleDiscount(){
   if(input === "kuch to discount do"){
@@ -21,9 +23,17 @@ function handleDiscount(){
     setInput("");
   }
 }
-
+const dispatch= useDispatch();
+const navigate = useNavigate();
 function handlecheckout(){
-  console.log("yes");
+  onOpen()
+  setTimeout(() => {
+    dispatch(setcartItems([]))
+      dispatch(setTotalPrice(0));
+      navigate("/")
+  },5000);
+  
+
 }
 
   return (
@@ -66,6 +76,21 @@ function handlecheckout(){
         </Box>
         <Button border="2px" ml="68%" borderRadius="5px" bg="#000000" color="#fff" mt="1rem" _hover={{ color: "black", bg: "#fff", boxShadow: "0 0 10px black" }} onClick={handlecheckout}>Checkout</Button>
       </Box>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+           
+    
+          <ModalBody>
+           <Text fontSize="19px" fontWeight="700">Thanks foy buying items from our website you items will be deliverd in 2 days</Text>
+          </ModalBody>
+
+          <ModalFooter>
+          
+            <Button  _hover={{background:"red.600"}} backgroundColor="red.500" color="#fff">OK</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       
     </Box>
   );
