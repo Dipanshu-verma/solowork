@@ -24,31 +24,29 @@ import { Link, useNavigate } from "react-router-dom";
 import CartCard from "../card/cartCard";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../Redux/actions/authaction";
- 
- 
+
+import "./navbar.scss";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
-const{cartItems,totalPrice} =  useSelector(state=>state.cart);
-const {accesstoken,profile} =  useSelector(state=> state.auth);
- 
-const nagivate =  useNavigate()
-function handleviewCart(){
- 
-  nagivate('/cartpage')
-}
- function handleLoginUser(){
-  nagivate('/login')
- }
-const dispatch  = useDispatch()
- function handleLogout(){
-  localStorage.removeItem("user_accesstoken");
-  localStorage.removeItem("user_profile");
-  dispatch(logoutUser())
+  const { cartItems, totalPrice } = useSelector((state) => state.cart);
+  const { accesstoken, profile } = useSelector((state) => state.auth);
 
- }
+  const nagivate = useNavigate();
+  function handleviewCart() {
+    nagivate("/cartpage");
+  }
+  function handleLoginUser() {
+    nagivate("/login");
+  }
+  const dispatch = useDispatch();
+  function handleLogout() {
+    localStorage.removeItem("user_accesstoken");
+    localStorage.removeItem("user_profile");
+    dispatch(logoutUser());
+  }
 
   return (
     <div style={{ position: "fixed", width: "100%", top: "0", zIndex: "100" }}>
@@ -67,21 +65,52 @@ const dispatch  = useDispatch()
           letterSpacing="2px"
           color="RGBA(0, 0, 0, 0.92)"
         >
-           
-          ECORE 
+          ECORE
         </Center>
         <Flex justifyContent="space-between" alignItems="center" gap="2rem">
-          <Link to='/' >Home</Link>
-          <Link to='/Products' >Products</Link>
+          <Link to="/">Home</Link>
+          <Link to="/Products">Products</Link>
           <Link>About</Link>
-          {
-            (accesstoken || localStorage.getItem("user_accesstoken"))? <Box display="flex" gap=".6rem" alignItems="center" > <Image src={profile?.photoURL} borderRadius="50%" width="35px" height="35px"/> <Button colorScheme="red" onClick={handleLogout}> Logout </Button> </Box>:<Button onClick={handleLoginUser} leftIcon={<AiOutlineLogin />}> Login </Button>
-          }
-          
+          {accesstoken || localStorage.getItem("user_accesstoken") ? (
+            <Box display="flex" gap=".6rem" alignItems="center">
+              {
+                <Image
+                  src={
+                    profile?.photoURL
+                      ? profile?.photoURL
+                      : "https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png"
+                  }
+                  borderRadius="50%"
+                  width="35px"
+                  height="35px"
+                />
+              }
+              <Button colorScheme="red" onClick={handleLogout}>
+                {" "}
+                Logout{" "}
+              </Button>{" "}
+            </Box>
+          ) : (
+            <Button onClick={handleLoginUser} leftIcon={<AiOutlineLogin />}>
+              {" "}
+              Login{" "}
+            </Button>
+          )}
 
-          <Center ref={btnRef} color="#000000" onClick={onOpen} position="relative">
-            <BsFillCartFill size={"2rem"}  />
-            <span style={{position:"absolute", top:"-.5rem", right:"-.5rem" ,width:"25px",height:"25px",borderRadius:"50%",backgroundColor:"#fff",color:"#000000", display:"flex",justifyContent:"center", alignItems:"center", display: cartItems?.length === 0 ? 'none' : 'flex',fontWeight:"600"}} >{cartItems?.length}</span>
+          <Center
+            ref={btnRef}
+            color="#000000"
+            onClick={onOpen}
+            position="relative"
+          >
+            <BsFillCartFill size={"2rem"} />
+            <span
+              className={
+                cartItems?.length === 0 ? "hide_cart_icon" : "cart_icon"
+              }
+            >
+              {cartItems?.length}
+            </span>
           </Center>
 
           <Drawer
@@ -94,38 +123,57 @@ const dispatch  = useDispatch()
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader color="red"  >Cart Items <span  > {cartItems?.length} </span> </DrawerHeader>
+              <DrawerHeader color="red">
+                Cart Items <span> {cartItems?.length} </span>{" "}
+              </DrawerHeader>
 
               <DrawerBody>
                 {cartItems?.length === 0 ? (
                   <h1>Your cart is empty.</h1>
                 ) : (
                   <ul>
-                   {cartItems?.map((item) => (
-                        
-                       <CartCard product={item} />
-                  
-            
+                    {cartItems?.map((item) => (
+                      <CartCard product={item} />
                     ))}
                   </ul>
                 )}
               </DrawerBody>
 
-              <DrawerFooter flexDirection="column" >
-              <Button border="2px" width="97%" borderRadius="5px" bg="#000000" color="#fff" mb="1rem" _hover={{ color: "black", bg: "#fff", boxShadow: "0 0 10px black" }} onClick={handleviewCart}>View cart</Button>
-              <Box display="flex" justifyContent="space-between" width="100%" alignItems="center">
-                <Text fontSize="20px" fontWeight="600">
-                  Total Price : $ {totalPrice.toFixed(1)}
-                </Text>
-              
+              <DrawerFooter flexDirection="column">
                 <Button
-                  colorScheme="red"
-                  mr={2}
-                  onClick={onClose}
-                  fontSize="1rem"
+                  border="2px"
+                  width="97%"
+                  borderRadius="5px"
+                  bg="#000000"
+                  color="#fff"
+                  mb="1rem"
+                  _hover={{
+                    color: "black",
+                    bg: "#fff",
+                    boxShadow: "0 0 10px black",
+                  }}
+                  onClick={handleviewCart}
                 >
-                  PROCEED
+                  View cart
                 </Button>
+                <Box
+                  display="flex"
+                  justifyContent="space-between"
+                  width="100%"
+                  alignItems="center"
+                >
+                  <Text fontSize="20px" fontWeight="600">
+                    Total Price : $ {totalPrice.toFixed(1)}
+                  </Text>
+
+                  <Button
+                    colorScheme="red"
+                    mr={2}
+                    onClick={onClose}
+                    fontSize="1rem"
+                  >
+                    PROCEED
+                  </Button>
                 </Box>
               </DrawerFooter>
             </DrawerContent>

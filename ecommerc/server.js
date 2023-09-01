@@ -108,7 +108,7 @@ app.post("/login", (req, res) => {
   }
 
    
-  res.status(200).json({ message: "Login successful." });
+  res.status(200).json({ message: "Login successful.", name:user.name });
 });
 
 app.listen(8000,() => {

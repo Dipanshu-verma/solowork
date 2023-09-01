@@ -14,10 +14,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineEye } from "react-icons/ai";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import "./login.scss";
-import axios from 'axios'
- 
+import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
-import { LoginWithgoogle } from "../../Redux/actions/authaction";
+import { LoginWithgoogle, loginNormal } from "../../Redux/actions/authaction";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -30,17 +30,17 @@ const Login = () => {
 
   const formref = useRef();
   const toast = useToast({
-    position: 'top'})
+    position: "top",
+  });
   function passwordhandle() {
-    
     setShow(!show);
   }
-const navigate =  useNavigate()
+  const navigate = useNavigate();
   function handlelogin() {
-    if(login){
-      navigate("/register")
-    }else{
-      navigate("/login")
+    if (login) {
+      navigate("/register");
+    } else {
+      navigate("/login");
     }
     setlogin(!login);
     setnamevalue("");
@@ -50,70 +50,92 @@ const navigate =  useNavigate()
 
   async function handleform(e) {
     e.preventDefault();
-   
+
     if (!validatePassword(passwordvalue)) {
       setpass(false);
       return;
     }
     setpass(true);
-   
 
-      
-      if(!login){
-        try{
-          const user = {name:namevalue,email:emailvalue,password:passwordvalue} 
-          const response = await axios.post("http://localhost:8000/register", user);
+    if (!login) {
+      try {
+        const user = {
+          name: namevalue,
+          email: emailvalue,
+          password: passwordvalue,
+        };
+        const response = await axios.post(
+          "http://localhost:8000/register",
+          user
+        );
 
+        console.log(response.data.message);
+        toast({
+          title: "Account created.",
+          description: "We've created your account for you.",
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
 
-                console.log(response); 
-                 
-                   navigate("/login")
-                   setlogin(true)
-                 
-                 
-            
-        }catch(err){
-          console.log('Registration failed:', err.response.data.message);
-        }
-      
-      }else{
-        try{
-          const user = {email:emailvalue,password:passwordvalue} 
-          const response = await axios.post("http://localhost:8000/login", user);
-        
-           localStorage.setItem("user_accesstoken", "indian") 
-            
-          navigate("/")
+        setTimeout(() => {
+          navigate("/login");
+        }, 1000);
 
-        }catch(err){
-          console.log('Registration failed:', err.response.data.message);
-        }
-      
+        setlogin(true);
+      } catch (err) {
+        toast({
+          title: "error",
+          description: "user Already exist please login",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
       }
+    } else {
+      try {
+        const user = { email: emailvalue, password: passwordvalue };
+        const response = await axios.post("http://localhost:8000/login", user);
+
+        localStorage.setItem("user_accesstoken", "indian");
+
+        toast({
+          title: "Login Successed.",
+          status: "success",
+          duration: 1000,
+          isClosable: true,
+        });
+
+        setTimeout(() => {
+          navigate("/");
+        }, 1000);
+      } catch (err) {
+        toast({
+          title: " Invalid credential.",
+          description: "please type right credential",
+          status: "error",
+          duration: 2000,
+          isClosable: true,
+        });
+      }
+    }
 
     setemailvalue("");
     setpasswordvalue("");
   }
+
   function validatePassword(password) {
-     
     return /\d/.test(password) && /[!@#$%^&*]/.test(password);
   }
-  const {accesstoken} =  useSelector(state=> state.auth);
- 
+  const { accesstoken } = useSelector((state) => state.auth);
 
-    if(localStorage.getItem("user_accesstoken")){
+  if (localStorage.getItem("user_accesstoken")) {
+    navigate("/");
+  }
 
-
-
-      navigate('/')
-    }
-  
-
-const dispatch =  useDispatch()
-  function handleLoginWithgoogle(){
-    
-    dispatch(LoginWithgoogle())
- 
+  const dispatch = useDispatch();
+  function handleLoginWithgoogle() {
+    dispatch(LoginWithgoogle());
   }
   return (
     <Box w="md" className="container">
@@ -189,7 +211,17 @@ const dispatch =  useDispatch()
           {!login ? "Create Account" : "Sign in"}{" "}
         </Button>
 
-        <Box display="flex" gap="1rem" mt="2rem" py=".5rem" borderRadius="3px" backgroundColor="rgb(227, 227, 227)" border="1px solid gray" justifyContent="center" onClick={handleLoginWithgoogle}>
+        <Box
+          display="flex"
+          gap="1rem"
+          mt="2rem"
+          py=".5rem"
+          borderRadius="3px"
+          backgroundColor="rgb(227, 227, 227)"
+          border="1px solid gray"
+          justifyContent="center"
+          onClick={handleLoginWithgoogle}
+        >
           <Text>Continue with </Text>
 
           <Image
