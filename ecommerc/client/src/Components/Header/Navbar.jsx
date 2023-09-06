@@ -174,6 +174,7 @@ const Navbar = () => {
                   bg="#000000"
                   color="#fff"
                   mb="1rem"
+                  display={cartItems?.length === 0 ?"none":"inline"}
                   _hover={{
                     color: "black",
                     bg: "#fff",

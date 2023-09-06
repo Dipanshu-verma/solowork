@@ -196,12 +196,14 @@ const Login = () => {
         {show ? (
           <BsFillEyeSlashFill
             className={pass ? "eyeshow" : "eyeshow aftererroreye"}
+            
             size={20}
             onClick={passwordhandle}
           />
         ) : (
           <BsFillEyeFill
             size={20}
+           
             className={pass ? "eyeshow" : "eyeshow aftererroreye"}
             onClick={passwordhandle}
           />

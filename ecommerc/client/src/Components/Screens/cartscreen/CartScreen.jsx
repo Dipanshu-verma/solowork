@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CartCard from "../../card/cartCard";
-import { Box, Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
 import { setTotalPrice, setcartItems } from "../../../Redux/actions/cartaction";
 import { useNavigate } from "react-router-dom";
  
@@ -46,7 +46,10 @@ function handlecheckout(){
     >
       <Box>
         {cartItems?.length === 0 ? (
-          <h1>Your cart is empty.</h1>
+          <Box display="flex" flexDirection="column" alignItems="center">
+                     <Image src="https://media.tenor.com/2UPyt6TKuWgAAAAM/marflrt.gif" alignSelf="center"/>
+                      <h1>Cart is Empty</h1>
+                     </Box>
         ) : (
           <ul>
             {cartItems?.map((item) => (
