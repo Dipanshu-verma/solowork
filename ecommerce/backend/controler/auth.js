@@ -11,6 +11,12 @@ const authRouter = express.Router();
 authRouter.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
 
+const userExist = await UserModel.findOne({email});
+
+if(userExist){
+  return res.status(400).json({ message: "User already exists, please log in." });
+
+}
   const hash = bcrypt.hashSync(password, 3);
 
   const user = new UserModel({ name, email, password: hash });
@@ -27,7 +33,7 @@ authRouter.post("/login", async (req, res) => {
   if (!user) {
     return res
       .status(400)
-      .json({ message: "user is not exist please register." });
+      .json({ message: "user is not exist" });
   }
 
   const match = await bcrypt.compare(password, user.password);
@@ -36,12 +42,12 @@ authRouter.post("/login", async (req, res) => {
     const token = jwt.sign({ userId: user._id }, "jaishreeram");
     res.status(200).json({ message: "Login successful.", token });
   } else {
-    res.status(400).json({ message: "Invalid credentials" });
+    res.status(400).json({ message: "Wrong Password" });
   }
 });
 
 function generateOTP() {
-  return Math.floor(100000 + Math.random() * 900000);
+  return Math.floor(1000 + Math.random() * 9000);
 }
 
 authRouter.post("/forget", async(req,res)=>{
@@ -50,7 +56,7 @@ authRouter.post("/forget", async(req,res)=>{
   const user  =  await UserModel.findOne({email})
 
   if(!user){
-    return res.status(400).send("user not registred please register first")
+    return res.status(400).json({message:"user not exist please register first"})
   }
  
   const transporter = nodemailer.createTransport({
@@ -89,11 +95,11 @@ const otp = generateOTP()
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error("Error sending email: ", error);
-      res.status(500).send({ message: "Failed to send OTP" });
+     
+      res.status(500).json({ message: "Failed to send OTP" });
     } else {
       
-     res.send("otp send successfull")
+     res.status(200).json({otp})
     }
     })
 })
@@ -116,6 +122,7 @@ authRouter.post("/checkout", async(req,res)=>{
     }
   })
 const orderNumber= Math.floor(100000 + Math.random() * 900000)
+
   const html = `
   <html>
   <head>
@@ -151,5 +158,26 @@ const orderNumber= Math.floor(100000 + Math.random() * 900000)
     }
     })
 })
+
+
+
+authRouter.post("/confirm", async (req, res) => {
+  const { email, password } = req.body;
+  const hash = bcrypt.hashSync(password, 3);
+
+ const user = await UserModel.findOneAndUpdate({ email },{password:hash});
+ 
+if(!user){
+  return res.status(400).json({message:"Something went wrong please try again"})
+}
+
+ res.status(200).json({message:"updated successfully"})
+
+  
+
+   
+
+
+});
 
 module.exports = { authRouter };
