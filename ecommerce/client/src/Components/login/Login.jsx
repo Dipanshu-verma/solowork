@@ -69,7 +69,7 @@ const Login = () => {
           user
         );
 
-        console.log(response.data.message);
+        console.log(response, "res");
         toast({
           title: "Account created.",
           description: "We've created your account for you.",
@@ -84,6 +84,7 @@ const Login = () => {
 
         setlogin(true);
       } catch (err) {
+         
         toast({
           title: "error",
           description: "user Already exist please login",
@@ -97,7 +98,7 @@ const Login = () => {
         const user = { email: emailvalue, password: passwordvalue };
         const response = await axios.post("http://localhost:8000/login", user);
 
-        localStorage.setItem("user_accesstoken", "indian");
+        localStorage.setItem("user_accesstoken", response.data.token);
 
         toast({
           title: "Login Successed.",
@@ -110,13 +111,17 @@ const Login = () => {
           navigate("/");
         }, 1000);
       } catch (err) {
+        console.log(err);
+
         toast({
-          title: " Invalid credential.",
-          description: "please type right credential",
+          title: "Error",
+          description:"Wrong Credentials",
           status: "error",
           duration: 2000,
           isClosable: true,
         });
+
+
       }
     }
 
@@ -136,6 +141,10 @@ const Login = () => {
   const dispatch = useDispatch();
   function handleLoginWithgoogle() {
     dispatch(LoginWithgoogle());
+  }
+
+  const handleforget = ()=>{
+    navigate("/forget")
   }
   return (
     <Box w="md" className="container">
@@ -175,6 +184,7 @@ const Login = () => {
             placeholder="Email"
             mb="1.2rem"
             value={emailvalue}
+            required
             onChange={(e) => setemailvalue(e.target.value)}
           />
         </FormControl>
@@ -184,26 +194,26 @@ const Login = () => {
             type={show ? "text" : "password"}
             mb="1.2rem"
             placeholder="Password"
+            required
             value={passwordvalue}
             onChange={(e) => setpasswordvalue(e.target.value)}
           />
         </FormControl>
+        <p onClick={handleforget} className={login?"forget_password":"hideforget_password"}>Forget password</p>
         <p className="errormassege">
           {!pass
-            ? "password should contains atleast 1 symbol and 1 number"
+            ? "Password should contain atleast 1 symbol and 1 number"
             : ""}
         </p>
         {show ? (
           <BsFillEyeSlashFill
             className={pass ? "eyeshow" : "eyeshow aftererroreye"}
-            
             size={20}
             onClick={passwordhandle}
           />
         ) : (
           <BsFillEyeFill
             size={20}
-           
             className={pass ? "eyeshow" : "eyeshow aftererroreye"}
             onClick={passwordhandle}
           />

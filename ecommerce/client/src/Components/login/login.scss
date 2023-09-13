@@ -30,8 +30,20 @@ form{
 }
 .ancor{
     color: rgb(46, 125, 243);
+    cursor: pointer;
 }
 .errormassege{
     color: red;
+}
+.forget_password{
+    position:absolute;
+    bottom: 10rem;
+    right: 2rem;
+    color:rgb(73, 117, 236);
+    cursor: pointer;
+
+}
+.hideforget_password{
+    display: none;
 }
  

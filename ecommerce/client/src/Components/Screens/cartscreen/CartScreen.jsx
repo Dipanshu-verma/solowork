@@ -85,7 +85,7 @@ function handlecheckout(){
            
     
           <ModalBody>
-           <Text fontSize="19px" fontWeight="700">Thanks foy buying items from our website you items will be deliverd in 2 days</Text>
+           <Text fontSize="19px" fontWeight="700">Thanks foy buying items from our website you will get order details on your email acount</Text>
           </ModalBody>
 
           <ModalFooter>
