@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Form Validation</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+      
+        .container {
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          width: 400px;
+        }
+      
+        .error-message {
+          color: red;
+          font-size: 0.8rem;
+        }
+      
+        label {
+          display: block;
+          margin-bottom: 8px;
+          font-weight: bold;
+        }
+      
+        input {
+          width: 100%;  
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          margin-bottom: 15px;
+          box-sizing: border-box;  
+        }
+      
+        input[type="submit"] {
+          background-color: #007bff;
+          color: white;
+          cursor: pointer;
+          width: 100%;  
+        }
+      
+        input[type="submit"]:hover {
+          background-color: #0056b3;
+        }
+      </style>
+      
+</head>
+
+<body>
+    <div class="container">
+        <h1>Form Validation Example</h1>
+        <form id="myForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span class="error-message" id="emailError"></span>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <span class="error-message" id="passwordError"></span>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <span class="error-message" id="phoneError"></span>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('myForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const phoneInput = document.getElementById('phone');
+
+        form.addEventListener('submit', function (event) {
+            let valid = true;
+
+
+            if (!validateEmail(emailInput.value)) {
+                document.getElementById('emailError').textContent = 'Invalid email format';
+                valid = false;
+            } else {
+                document.getElementById('emailError').textContent = '';
+            }
+
+
+            if (passwordInput.value.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
+                valid = false;
+            } else {
+                document.getElementById('passwordError').textContent = '';
+            }
+
+
+            if (!validatePhoneNumber(phoneInput.value)) {
+                document.getElementById('phoneError').textContent = 'Invalid phone number format';
+                valid = false;
+            } else {
+                document.getElementById('phoneError').textContent = '';
+            }
+
+            if (!valid) {
+                event.preventDefault();
+            }
+        });
+
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validatePhoneNumber(phone) {
+            const phoneRegex = /^\d{10}$/;
+            return phoneRegex.test(phone);
+        }
+    </script>
+</body>
+
+</html>
