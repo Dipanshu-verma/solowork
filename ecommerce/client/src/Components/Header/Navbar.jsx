@@ -74,8 +74,7 @@ const Navbar = () => {
               {
                 <Image
                   src={
-                    profile?.photoURL
-                      ? profile?.photoURL
+                    profile?profile?.photoURL
                       : "https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png"
                   }
                   borderRadius="50%"
@@ -164,7 +163,7 @@ const Navbar = () => {
                   alignItems="center"
                 >
                   <Text fontSize="20px" fontWeight="600">
-                    Total Price : $ {totalPrice.toFixed(1)}
+                    Total Price : $ {totalPrice.toFixed(0)}
                   </Text>
 
                   <Button

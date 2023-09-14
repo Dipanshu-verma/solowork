@@ -15,7 +15,7 @@ const CartCard = ({ product, CartScreen }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const dispatch = useDispatch();
   const { totalPrice } = useSelector((state) => state.cart);
-
+ 
   
    
 
@@ -77,7 +77,7 @@ function handdleDelete(){
         </Box>
         <Box display="flex" justifyContent="space-between">
           <h3 style={{ fontSize: "16px" }}>
-            Price : ${(quant * product.price).toFixed(0)}
+            Price : ${(quant * Math.floor(product.price)).toFixed(0)}
           </h3>
         </Box>
         {CartScreen && (

@@ -12,7 +12,7 @@ useEffect(()=>{
 },[dispatch])
  
 const {products,loading} = useSelector(state=>state.products)
- console.log(products);
+  
   return (
     <div>
        <img src={benner} alt="" className='benner_img'/>

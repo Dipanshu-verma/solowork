@@ -20,7 +20,7 @@ let total  =  0;
 let items =  JSON.parse(localStorage.getItem("cartItems"))||[]
 items?.forEach((elm)=>{
     let quan  =  localStorage.getItem(`quan_${elm.id}`)||1
-    total += elm.price * Number(quan)
+    total += Math.floor(elm.price) * Number(quan)
 })
  
 //  total= total.toFixed(0);

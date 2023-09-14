@@ -34,7 +34,7 @@ const CardProd = ({ product, productscreen }) => {
 
           <HStack spacing="4rem">
             <Text color="black" fontWeight="600" fontSize="xx">
-              price: ${product.price}
+              price: ${Math.floor(product.price)}
             </Text>
             <Text color="black" fontWeight="600" fontSize="xx">
               rating: {product.rating.rate}
