@@ -68,7 +68,8 @@ const CartScreen = () => {
       isMobileValid
     ) {
       toast({
-        description: `Thanks, you will be redirect on home page in 3 seconde`,
+        title:"Order Successfull",
+        description: `Thank you! Your order is confirmed and you'll be redirected to the home page shortly.`,
         status: "success",
         position: "top",
         duration: 3000,
@@ -99,6 +100,7 @@ const CartScreen = () => {
       }
     } else {
       toast({
+        title: "Incomplete Information",
         description: `please fill the all details carefully`,
         status: "error",
         position: "top",
@@ -134,6 +136,7 @@ const CartScreen = () => {
       });
     }
   }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setAddress({
@@ -223,8 +226,7 @@ const CartScreen = () => {
         <ModalContent>
           <ModalBody>
             <Text fontSize="16px" fontWeight="600">
-              Thanks foy buying items from our website you will get order
-              details on your email acount
+            Thank you for choosing Ecore! To ensure a seamless delivery, please provide your shipping address so we can   send you the order details to your email.
             </Text>
 
             <FormControl mt={2}>
@@ -293,11 +295,11 @@ const CartScreen = () => {
           <ModalFooter>
             <Button
               _hover={{ background: "red.600" }}
-              backgroundColor="red.500"
+              backgroundColor="blue.500"
               color="#fff"
               onClick={handlecheckoutok}
             >
-              OK
+              Submit
             </Button>
           </ModalFooter>
         </ModalContent>

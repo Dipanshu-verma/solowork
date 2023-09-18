@@ -15,11 +15,28 @@ const navigate =  useNavigate()
     setConfirmPassword(e.target.value);
   };
 
+
+
+  function validatePassword(password) {
+    return /\d/.test(password) && /[!@#$%^&*]/.test(password);
+  }
+
   const handleResetPassword = async(e) => {
  e.preventDefault();
     if (newPassword === confirmPassword) {
      
+      if(!validatePassword(newPassword)) {
+        return toast({
+          description: `Password should be contain 1 alphabet and 1 number`,
+          status: "success",
+          position: "top",
+          duration: 2000,
+          isClosable: true,
+        });
+       
+      }
        const email  =  localStorage.getItem("forget_email")
+
        try {
       const res  =  await axios.post("http://localhost:8000/confirm", {email,password:newPassword})
       toast({
@@ -41,7 +58,13 @@ navigate("/login")
 
     } else {
        
-      alert('Passwords do not match');
+      toast({
+        description: `Your password doesn't match`,
+        status: "error",
+        position: "top",
+        duration: 2000,
+        isClosable: true,
+      });
     }
   };
 

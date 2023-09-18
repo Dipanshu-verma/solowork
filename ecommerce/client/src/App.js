@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Navbar from './Components/Header/Navbar';
 import Home from './Components/Screens/homescreen/Home';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import ProductDetails from './Components/Screens/ProductDetails';
 import ProductScreen from './Components/Screens/productscreen/ProductScreen';
 import CartScreen from './Components/Screens/cartscreen/CartScreen';
@@ -23,10 +23,20 @@ import Confirm from './Components/confirmPassword/Confirm';
 
 
 function App() {
+
+   
+  const location = useLocation();
+
+  
+  const hideNavbarRoutes = ['/confirm', '/forget'];
+
+ 
+  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
   return (
     <>
     
-     <Navbar/>
+    {!shouldHideNavbar && <Navbar />}
+
      <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/login' element={<Login/>} />
@@ -39,7 +49,8 @@ function App() {
       <Route/>
       <Route/>
     </Routes>  
-    <img src={footer} alt="" />  
+
+    {!shouldHideNavbar && <img src={footer} alt="" />}
    
     {/* <div className="App">
     
