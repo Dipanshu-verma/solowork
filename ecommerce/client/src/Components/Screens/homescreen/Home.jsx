@@ -16,7 +16,7 @@ const {products,loading} = useSelector(state=>state.products)
   return (
     <div>
        <img src={benner} alt="" className='benner_img'/>
-       <h1>Letest Products</h1>
+       <h1>Latest Products</h1>
        <Grid templateColumns='repeat(4, 1fr)' gap={6} p="2rem" >
         {
            !loading? 

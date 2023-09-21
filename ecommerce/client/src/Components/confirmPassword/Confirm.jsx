@@ -15,7 +15,8 @@ const navigate =  useNavigate()
     setConfirmPassword(e.target.value);
   };
 
-
+  const BACKEND_API = "https://ecorebackendappi.onrender.com"
+  
 
   function validatePassword(password) {
     return /\d/.test(password) && /[!@#$%^&*]/.test(password);
@@ -27,7 +28,9 @@ const navigate =  useNavigate()
      
       if(!validatePassword(newPassword)) {
         return toast({
-          description: `Password should be contain 1 alphabet and 1 number`,
+          title: "Password Reset Failed",
+          description: `Password must contain at least 1 symbol and 1 number!
+          `,
           status: "success",
           position: "top",
           duration: 2000,
@@ -38,9 +41,10 @@ const navigate =  useNavigate()
        const email  =  localStorage.getItem("forget_email")
 
        try {
-      const res  =  await axios.post("http://localhost:8000/confirm", {email,password:newPassword})
+      const res  =  await axios.post(`${BACKEND_API}/confirm`, {email,password:newPassword})
       toast({
-        description: `Your password has been successfully reset `,
+        title: "Password Reset Completed",
+        description: "Your password has been successfully reset.",
         status: "success",
         position: "top",
         duration: 2000,
@@ -59,7 +63,8 @@ navigate("/login")
     } else {
        
       toast({
-        description: `Your password doesn't match`,
+        title: "Password Reset Failed",
+        description: "The entered passwords do not match. Please try again.",
         status: "error",
         position: "top",
         duration: 2000,

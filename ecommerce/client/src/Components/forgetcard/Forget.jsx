@@ -16,7 +16,8 @@ const Forget = () => {
     
   });
 const navigate =  useNavigate()
-
+const BACKEND_API = "https://ecorebackendappi.onrender.com"
+ 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -25,23 +26,25 @@ const navigate =  useNavigate()
     e.preventDefault();
     
     try {
-      const res = await axios.post("http://localhost:8000/forget", { email });
+      const res = await axios.post( `${BACKEND_API}/forget`, { email });
 
       toast({
-        description: `your OTP has been sent to ${email}`,
+        title: "Email Sent",
+        description: `A one-time password (OTP) has been sent to ${email}. Please check your inbox.`,
         status: "success",
         position: "top",
         duration: 3000,
         isClosable: true,
       });
 
-      console.log(res);
+       
       onOpen();
       setOtp(res.data.otp)
     
     } catch (err) {
         toast({
-            description:"User does not exist",
+          title: "Password Reset Failed",
+          description: "Email not found. Please verify your email or sign up.",
             status: "error",
             position: "top",
             duration: 2000,

@@ -37,17 +37,19 @@ const Login = () => {
   }
   const navigate = useNavigate();
   function handlelogin() {
+   setpass(true)
     if (login) {
       navigate("/register");
     } else {
       navigate("/login");
     }
+    
     setlogin(!login);
     setnamevalue("");
     setemailvalue("");
     setpasswordvalue("");
   }
-
+const BACKEND_API = "https://ecorebackendappi.onrender.com"
   async function handleform(e) {
     e.preventDefault();
 
@@ -65,14 +67,14 @@ const Login = () => {
           password: passwordvalue,
         };
         const response = await axios.post(
-          "http://localhost:8000/register",
+          `${BACKEND_API}/register`,
           user
         );
 
         console.log(response, "res");
         toast({
-          title: "Account created.",
-          description: "We've created your account for you.",
+          title: "Account Created Successfully",
+          description: "Your account has been successfully created.",
           status: "success",
           duration: 1000,
           isClosable: true,
@@ -86,8 +88,8 @@ const Login = () => {
       } catch (err) {
          
         toast({
-          title: "error",
-          description: "user Already exist please login",
+          title: "Account Already Exists",
+          description: "An account with this email already exists. Please sign in or use a different email.",
           status: "error",
           duration: 2000,
           isClosable: true,
@@ -96,12 +98,13 @@ const Login = () => {
     } else {
       try {
         const user = { email: emailvalue, password: passwordvalue };
-        const response = await axios.post("http://localhost:8000/login", user);
+        const response = await axios.post(`${BACKEND_API}/login`, user);
 
         localStorage.setItem("user_accesstoken", response.data.token);
 
         toast({
-          title: "Login Successed.",
+          title: "Sign In Successful",
+          description: "You have successfully signed in.",
           status: "success",
           duration: 1000,
           isClosable: true,
@@ -114,7 +117,7 @@ const Login = () => {
         console.log(err);
 
         toast({
-          title: "Error",
+          title: "Sign in failed",
           description:"Wrong Credentials",
           status: "error",
           duration: 2000,
@@ -151,13 +154,13 @@ const Login = () => {
       <Box textAlign="center">
         <Text fontSize="1.6rem" fontWeight="700" mb=".6rem">
           {" "}
-          {login ? "Log in to your account" : "Create an Account"}{" "}
+          {login ? "Login to your account " : "Create an Account "}{" "}
         </Text>
         <Text>
           {" "}
-          {login ? "Don't have an account?" : "Already have an account? "}
+          {login ? "Don't have an account? " : "Already have an account? "}
           <a onClick={handlelogin} className="ancor">
-            {login ? "Sign up" : "Log in"}
+            {login ? "Sign up" : "Login"}
           </a>
         </Text>
       </Box>
@@ -199,7 +202,7 @@ const Login = () => {
             onChange={(e) => setpasswordvalue(e.target.value)}
           />
         </FormControl>
-        <p onClick={handleforget} className={login?"forget_password":"hideforget_password"}>Forget password</p>
+        <p onClick={handleforget} className={login?"forget_password":"hideforget_password"}>Forgot password?</p>
         <p className="errormassege">
           {!pass
             ? "Password should contain atleast 1 symbol and 1 number"
@@ -222,8 +225,7 @@ const Login = () => {
         <Button w="100%" type="submit" colorScheme="blue" mt="2rem">
           {!login ? "Create Account" : "Sign in"}{" "}
         </Button>
-
-        <Box
+   <Box
           display="flex"
           gap="1rem"
           mt="2rem"
@@ -242,6 +244,8 @@ const Login = () => {
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png"
           />
         </Box>
+ 
+        
       </form>
     </Box>
   );

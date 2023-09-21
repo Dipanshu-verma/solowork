@@ -44,17 +44,17 @@ return (
           <Button variant='outline' fontWeight="700" colorScheme='green' value="All">All</Button>
           <Button variant='outline' fontWeight="700" colorScheme='green' value="men's clothing">Men's cloth</Button>
           <Button variant='outline' fontWeight="700" colorScheme='green' value="women's clothing">Women's cloth</Button>
-          <Button variant='outline' fontWeight="700" colorScheme='green' value="jewelery">Jawelry</Button>
+          <Button variant='outline' fontWeight="700" colorScheme='green' value="jewelery">Jewellery</Button>
           <Button variant='outline' fontWeight="700" colorScheme='green' value="electronics">Electronics</Button>
         </Box>
         <Box display="flex" justifyContent="space-between"  px="2rem">
         <Select placeholder='Sort by Price' fontWeight="700"  size="sm" w="10rem" onChange={handleSortPrice}>
  
-  <option value='asc'>Low To HIGH</option>
+  <option value='asc'>Low to High</option>
   <option value='desc'>High to Low</option>
 </Select>
-   <Select placeholder='Sort By rating' size="sm" w="10rem" fontWeight="700" onChange={handleSortrating}>
-  <option value='asc'>Low To HIGH</option>
+   <Select placeholder='Sort by Rating' size="sm" w="10rem" fontWeight="700" onChange={handleSortrating}>
+  <option value='asc'>Low to High</option>
   <option value='desc'>High to Low</option>
 </Select>
         </Box>

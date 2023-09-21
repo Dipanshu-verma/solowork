@@ -63,7 +63,7 @@ const Navbar = () => {
           letterSpacing="2px"
           color="RGBA(0, 0, 0, 0.92)"
         >
-          ECORE
+          ECO<span style={{color:"green"}}>RE</span> 
         </Center>
         <Flex justifyContent="space-between" alignItems="center" gap="2rem">
           <Link to="/">Home</Link>
@@ -82,7 +82,7 @@ const Navbar = () => {
                   height="35px"
                 />
               }
-              <Button colorScheme="red" onClick={handleLogout}>
+              <Button border="1px solid gray" backgroundColor="#fff" onClick={handleLogout}>
                 {" "}
                 Logout{" "}
               </Button>{" "}

@@ -39,7 +39,7 @@ const CartScreen = () => {
   });
   const toast = useToast();
   function handleDiscount() {
-    if (input === "kuch to discount do") {
+    if (input === "ECORE10") {
       setShow(false);
       setInput("");
       setdiscount(((Math.floor(totalPrice) * 10) / 100).toFixed(0));
@@ -52,13 +52,14 @@ const CartScreen = () => {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const BACKEND_API = "https://ecorebackendappi.onrender.com"
   async function handlecheckoutok() {
    
     const token = localStorage.getItem("user_accesstoken");
     const profile = localStorage.getItem("user_profile");
     const isMobileValid = /^[0-9]{10}$/.test(address.mobile);
     const iszipValid = /^[0-9]{6}$/.test(address.zip);
+    
     if (
       address.name &&
       address.street &&
@@ -79,7 +80,7 @@ const CartScreen = () => {
         const total  = Math.floor(totalPrice)-discount
         
        
-        const res = await axios.post("http://localhost:8000/checkout", {
+        const res = await axios.post(`${BACKEND_API}/checkout`, {
           token,
           address,
           total
@@ -182,7 +183,7 @@ const CartScreen = () => {
               onChange={(e) => setInput(e.target.value)}
             />{" "}
             <Text display={show ? "block" : "none"} color="red">
-              You have entered wrong code
+              Invalid promo code
             </Text>{" "}
           </Text>
           <Button onClick={handleDiscount} colorScheme="green">
